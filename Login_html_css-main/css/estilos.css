@@ -40,6 +40,7 @@ div#mapa{
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    border-radius: 5px;
 }
 
 .imagen-formulario{
@@ -134,10 +135,13 @@ div#mapa{
 .texto-Filtros{
     color: var(--blanco);
     font-weight: bold;
+   
 }
 .Filtros{
     padding: 50px;
     background-color: var(--azul);
+    border-radius: 5px;
+
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
