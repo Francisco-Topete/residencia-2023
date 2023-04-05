@@ -1,4 +1,3 @@
-<?php
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,7 +14,22 @@
 </head>
 
 <body>
-
+<?php 
+$serverName = "DESKTOP-E9CI0O6\\SQLEXPRESS";  
+$uid = "Administrador";
+$pwd = "12345678";
+$connectionInfo = array("UID" => $uid, "PWD" => $pwd, "Database"=>"Sistema_Censado_Animales");  
+$conn = sqlsrv_connect( $serverName, $connectionInfo);  
+  
+if( $conn )  
+{  
+     echo "Ya entro, pa.\n";  
+}  
+else  
+{  
+     echo "*Se muere*.\n";  
+     die( print_r( sqlsrv_errors(), true));  
+}  ?>
     <div class="contenedor-formulario contenedor">
         <div class="imagen-formulario">
             
@@ -46,4 +60,3 @@
 </body>
 
 </html>
-?>

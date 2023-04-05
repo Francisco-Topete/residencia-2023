@@ -1,4 +1,4 @@
-<?php
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -116,8 +116,7 @@
             
         </form>
     </div>
-
+<?php echo "Si" ?>
 </body>
 
 </html>
-?>
