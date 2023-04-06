@@ -141,9 +141,34 @@ div#mapa{
     padding: 50px;
     background-color: var(--azul);
     border-radius: 5px;
-
+    
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
+}
+
+.icon{
+    border-left: .5px solid #001A49;
+}
+
+.select-box{
+    border: none;
+    appearance: none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: #030303;
+    background-color: #F1E4E8;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.select-raza{
+    border: none;
+    appearance: none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: #030303;
+    background-color: #F1E4E8;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
