@@ -37,32 +37,38 @@
         <div class="texto-Filtros">
                 <label>Especie</label> <br>
                 <select class="select-box">
-                    <option value="">Perro </option>
+                    <option value="">Elige una opcion</option>
+                    <option value="">Perro</option>
                     <option value="">Gato</option>
                     <option value="">Otro</option> 
                 </select><br>
 
+                
                 <label>Raza</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">huky </option>
                     <option value="">pitbull</option>
                     <option value="">labrador</option>
                 </select><br>
 
                 <label>Sexo</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">Macho </option>
                     <option value="">Hembra</option>
                 </select><br>
 
                 <label>Situacion</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">callejero </option>
                     <option value="">hogar</option>
                 </select><br>
 
                 <label>Edad</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">cachorro lactante </option>
                     <option value="">cachorro destetado</option>
                     <option value="">Adolescente</option>
@@ -71,7 +77,8 @@
                 </select><br>
 
                 <label>Problemas de salud</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">Sarna</option>
                     <option value="">Garrapatas</option>
                     <option value="">Pulgas</option>
@@ -80,7 +87,7 @@
                     <option value="">Vomito</option>
                     <option value="">Rabia</option>
                     <option value="">Alergias</option>
-                    <option value="">Heridas infectadas/option>
+                    <option value="">Heridas infectadas</option>
                     <option value="">infeccion en ojos</option>
                     <option value="">moquillo</option>
                     <option value="">Parvo virus</option>
@@ -88,13 +95,15 @@
                 </select><br>
 
                 <label>Desnutricion</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">Si </option>
                     <option value="">No</option>
                 </select><br>
 
                 <label>Heridas</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">Signos de maltrato </option>
                     <option value="">Atropellado</option>
                     <option value="">Patas lecionadas</option>
@@ -106,7 +115,8 @@
                 </select><br>
 
                 <label>Comportamiento</label> <br>
-                <select name="" id="">
+                <select class="select-box">
+                <option value="">Elige una opcion</option>
                     <option value="">Docil</option>
                     <option value="">Agresivo</option>
                     <option value="">Miedo</option>
