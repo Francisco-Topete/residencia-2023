@@ -15,7 +15,7 @@
 
 <body>
 <?php 
-$serverName = "DESKTOP-E9CI0O6\\SQLEXPRESS";  
+$serverName = "201.170.69.189:1433\\SQLEXPRESS";
 $uid = "Administrador";
 $pwd = "12345678";
 $connectionInfo = array("UID" => $uid, "PWD" => $pwd, "Database"=>"Sistema_Censado_Animales");  
