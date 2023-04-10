@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<!-- Aqui llamamos todas las librerias y referencias necesarias para el funcionamiento de la plataforma web -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LOGIN</title>
+    <!-- Pedimos las fuentes de google para utilizar dentro del mapa -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
@@ -14,45 +16,34 @@
 </head>
 
 <body>
-<?php 
-$serverName = "201.170.69.189\\SQLEXPRESS, 1433";
-$uid = "Administrador";
-$pwd = "12345678";
-$connectionInfo = array("UID" => $uid, "PWD" => $pwd, "Database"=>"Sistema_Censado_Animales");  
-$conn = sqlsrv_connect( $serverName, $connectionInfo);  
-  
-if( $conn )  
-{  
-     echo "Ya entro, pa.\n";  
-}  
-else  
-{  
-     echo "*Se muere*.\n";  
-     die( print_r( sqlsrv_errors(), true));  
-}  ?>
     <div class="contenedor-formulario contenedor">
+        <!-- Foto para decorar el inicio de sesion -->
         <div class="imagen-formulario">
             
         </div>
-
-        <form class="formulario">
+        <!-- Este es el formulario POST de inicio de sesion; el usuario introducira su numerod e telefono
+    y contraseña -->
+        <form method="post" action="login.php" class="formulario">
             <div class="texto-formulario">
                 <h2>Bienvenido</h2>
                 <p>Inicia sesión con tu cuenta</p>
             </div>
+            <!-- Campo de telefono de usuario -->
             <div class="input">
                 <label for="usuario">Usuario</label>
-                <input placeholder="Ingresa tu nombre" type="text" id="usuario">
+                <input placeholder="Ingresa tu nombre" type="text" name="usuario" required>
             </div>
+            <!-- Campo de contraseña de usuario -->
             <div class="input">
                 <label for="contraseña">Contraseña</label>
-                <input placeholder="Ingresa tu contraseña" type="password" id="contraseña">
+                <input placeholder="Ingresa tu contraseña" type="password" name="contrasena" required>
             </div>
             <div class="password-olvidada">
                 <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
+            <!-- Boton para iniciar sesion -->
             <div class="input">
-                <input type="submit" value="ingresar">
+                <input type="submit" name="ingresar" value="ingresar">
             </div>
         </form>
     </div>
