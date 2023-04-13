@@ -27,14 +27,17 @@
 </head>
 
 <body>
-    
+     <!-- clase contenedor para el google maps-->
     <div class="contenedor">
+         <!-- insercion del google maps -->
 <div id="mapa">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107847.06430162302!2d-117.12744315223034!3d32.3596229541357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9313f72cece1b%3A0x7a0ec61c8d78d247!2sRosarito%2C%20B.C.!5e0!3m2!1ses!2smx!4v1678830340019!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+     <!-- division para los filtros-->
         <form class="Filtros">
            
         <div class="texto-Filtros">
+             <!-- filtro para la especie -->
                 <label>Especie</label> <br>
                 <select class="select-box">
                     <option value="">Elige una opcion</option>
@@ -43,7 +46,7 @@
                     <option value="">Otro</option> 
                 </select><br>
 
-                
+                <!-- filtro para la raza -->
                 <label>Raza</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -52,6 +55,7 @@
                     <option value="">labrador</option>
                 </select><br>
 
+                <!-- filtro para el sexo -->
                 <label>Sexo</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -59,13 +63,15 @@
                     <option value="">Hembra</option>
                 </select><br>
 
+                <!-- filtro para la situacion -->
                 <label>Situacion</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
                     <option value="">callejero </option>
                     <option value="">hogar</option>
                 </select><br>
-
+                
+                <!-- filtro para la edad -->
                 <label>Edad</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -75,7 +81,8 @@
                     <option value="">Adulto</option>
                     <option value="">Anciano</option>
                 </select><br>
-
+                
+                <!-- filtro para la salud -->
                 <label>Problemas de salud</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -93,7 +100,8 @@
                     <option value="">Parvo virus</option>
                     <option value="">Otro</option>
                 </select><br>
-
+                
+                <!-- filtro para la desnutricion -->
                 <label>Desnutricion</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -101,6 +109,7 @@
                     <option value="">No</option>
                 </select><br>
 
+                <!-- filtro para las heridas -->
                 <label>Heridas</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
@@ -114,6 +123,7 @@
                     <option value="">Otros</option>
                 </select><br>
 
+                <!-- filtro para el comportamiento -->
                 <label>Comportamiento</label> <br>
                 <select class="select-box">
                 <option value="">Elige una opcion</option>
