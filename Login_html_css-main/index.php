@@ -31,7 +31,7 @@
             <!-- Campo de telefono de usuario -->
             <div class="input">
                 <label for="usuario">Usuario</label>
-                <input placeholder="Ingresa tu nombre" type="text" name="usuario" required>
+                <input placeholder="Ingresa tu telefono" type="text" name="usuario" required>
             </div>
             <!-- Campo de contraseña de usuario -->
             <div class="input">
