@@ -37,10 +37,6 @@
             <div class="input">
                 <label for="contraseña">Contraseña</label>
                 <input placeholder="Ingresa tu contraseña" type="password" name="contrasena" required>
-            </div>
-            <div class="password-olvidada">
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
             <!-- Boton para iniciar sesion -->
             <div class="input">
                 <input type="submit" name="ingresar" value="ingresar">
