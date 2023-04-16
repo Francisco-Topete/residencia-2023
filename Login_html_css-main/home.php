@@ -47,9 +47,6 @@
   });
 
   map.addControl(new mapboxgl.NavigationControl());
-  
-
-  
 </script>
 
     </div>
