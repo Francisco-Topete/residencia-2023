@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <style>
+        
         .contenedor{
             height: 50vh;
             margin: 5%;
@@ -36,13 +37,19 @@
     <div class="contenedor">
          <!-- insercion del google maps -->
 <div id="mapa">
-<div id='map' style='width: 400px; height: 300px;'></div>
+<div id='map' style='width: 800px; height: 600px;'></div>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11'
+    
   });
+
+  map.addControl(new mapboxgl.NavigationControl());
+  
+
+  
 </script>
 
     </div>
