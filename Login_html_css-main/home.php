@@ -34,9 +34,9 @@
 <body>
      <!-- clase contenedor para el google maps-->
     <div class="contenedor">
-
-         <!-- mapboxs -->
-         <div id='map' style='width: 400px; height: 300px;'></div>
+         <!-- insercion del google maps -->
+<div id="mapa">
+<div id='map' style='width: 400px; height: 300px;'></div>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
   var map = new mapboxgl.Map({
@@ -44,9 +44,8 @@
     style: 'mapbox://styles/mapbox/streets-v11'
   });
 </script>
-<!-- mapboxs -->
 
-
+    </div>
      <!-- division para los filtros-->
         <form class="Filtros">
            
