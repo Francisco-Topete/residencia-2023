@@ -10,7 +10,6 @@
 
     if (isset($_POST['ingresar'])) //Si se reciben los datos del formulario en index, se hara lo siguiente:
     { 
-        
         //Se definen los datos del usuario en base al formulario.
         $telefono = $_POST['usuario']; //Telefono
         $contrasena = $_POST['contrasena']; //Contraseña
@@ -42,7 +41,6 @@
             { 
                 header('Location: '.'index.php'); //Volveremos a la pantalla de inicio de sesion.
             }
-
         }
     }   
 ?>

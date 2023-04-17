@@ -9,7 +9,7 @@
     android:backgroundTint="#AA8ED6"
     android:backgroundTintMode="add"
     android:foregroundTint="@color/purple_200"
-    tools:context=".InicioSesion">
+    tools:context=".activityInicioSesion">
 
     <LinearLayout
         android:id="@+id/linearlayoutLogin"
