@@ -35,7 +35,7 @@ body{
 }
 div#mapa{
     height: 50vh;
-    margin: 20%;
+    margin: 5%;
     display: flex ;
     flex-direction: row;
     justify-content: left;
@@ -69,7 +69,7 @@ div#mapa{
 @media(min-width:768px){
     .imagen-formulario{
         height: auto;
-        background-position: right;
+        background-position: center;
     }
 
 }

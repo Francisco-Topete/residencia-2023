@@ -35,9 +35,9 @@
 <body>
      <!-- clase contenedor para el google maps-->
     <div class="contenedor">
-         <!-- insercion del google maps -->
+         <!-- insercion del  maps -->
 <div id="mapa">
-<div id='map' style='width: 800px; height: 600px;'></div>
+<div id='map' style='width: 450px; height: 450px;'></div>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
   var map = new mapboxgl.Map({
