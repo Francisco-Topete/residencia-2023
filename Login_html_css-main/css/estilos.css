@@ -69,7 +69,7 @@ div#mapa{
 @media(min-width:768px){
     .imagen-formulario{
         height: auto;
-        background-position: center;
+        background-position: right;
     }
 
 }
@@ -136,6 +136,7 @@ div#mapa{
     color: var(--blanco);
     font-weight: bold;
     font-size: 18px;
+    
    
 }
 .Filtros{
@@ -143,9 +144,12 @@ div#mapa{
     background-color: var(--azul);
     border-radius: 5px;
     
+    
+    
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
+    
 }
 
 .icon{

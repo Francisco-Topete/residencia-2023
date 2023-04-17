@@ -37,13 +37,13 @@
     <div class="contenedor">
          <!-- insercion del  maps -->
 <div id="mapa">
-<div id='map' style='width: 450px; height: 450px;'></div>
+<div id='map' style='width: 350px; height: 450px;'></div>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11'
-    
+
   });
 
   map.addControl(new mapboxgl.NavigationControl());
