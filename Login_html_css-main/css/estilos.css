@@ -23,24 +23,42 @@ body{
     display: flex;
     align-items: center;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    
+    font-family: 'Poppins', sans-serif; 
 }
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
 
 .contenedor{
     margin: 0 auto;
     max-width: 1200px;
     width: 95%;
-    
 }
-div#mapa{
+
+.contenedorHome{
+    margin: 5%;
+    margin-top: 30vh;
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.contenedorMapa{
     height: 50vh;
     margin: 5%;
     display: flex ;
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    
+}
+
+div#map{
+    width: 800px; 
+    height: 600px;
 }
 
 .imagen-formulario{
@@ -143,9 +161,6 @@ div#mapa{
     padding: 50px;
     background-color: var(--azul);
     border-radius: 5px;
-    
-    
-    
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
