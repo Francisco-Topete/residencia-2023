@@ -3,6 +3,11 @@
 <html lang="es">
 
 <head>
+
+<!-- mapboxs-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<!--mapboxs-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,6 +18,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <style>
+        
         .contenedor{
             height: 50vh;
             margin: 5%;
@@ -29,9 +35,20 @@
 <body>
      <!-- clase contenedor para el google maps-->
     <div class="contenedor">
-         <!-- insercion del google maps -->
+         <!-- insercion del  maps -->
 <div id="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107847.06430162302!2d-117.12744315223034!3d32.3596229541357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9313f72cece1b%3A0x7a0ec61c8d78d247!2sRosarito%2C%20B.C.!5e0!3m2!1ses!2smx!4v1678830340019!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div id='map' style='width: 800px; height: 600px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+</script>
+
     </div>
      <!-- division para los filtros-->
         <form class="Filtros">
