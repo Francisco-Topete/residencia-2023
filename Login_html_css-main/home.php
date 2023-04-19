@@ -1,9 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <!-- mapboxs-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
@@ -18,48 +15,28 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/burgerMenu.css">
- 
 </head>
 
 <body>
     <!-- clase contenedor para el maps-->
-<nav>
-    <div class="navbar">
-    <div class="container nav-container">
-        <input class="checkbox" type="checkbox" name="" id="" />
-        <div class="hamburger-lines">
-            <span class="line line1"></span>
-            <span class="line line2"></span>
-            <span class="line line3"></span>
-        </div>  
-        <div class="logo">
-            <h1>Mapa</h1>
-        </div>
-        <div class="menu-items">
-        <li><a href="admin/captura.php">Añadir rescatista</a></li>
-        <li><a href="admin/rescatistas.php">Ver rescatistas</a></li>
-        <li><a href="admin/nodos.php">Ver lista de nodos</a></li>
-        <li><a href="admin/cerrarsesion.php">Cerrar sesion</a></li>
-        </div>
-    </div>
-    </div>
-</nav>
+<?php
+include 'navigation.php';
+?>
 
 <div class="contenedorHome">
 
          <!-- insercion del maps -->
     <div class="contenedorMapa">
         <div id="map"></div>
-
         <script>
             mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
             var map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11'
-
+                style: 'mapbox://styles/mapbox/streets-v10'
             });
 
             map.addControl(new mapboxgl.NavigationControl());
+            map.setView([32.3604400, -117.0464500], 7);
         </script>
 
     </div>

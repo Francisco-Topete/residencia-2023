@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/modalCrud.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/burgerMenu.css">
@@ -25,68 +26,66 @@
 </head>
 
 <body>
-    <nav>
-      <div class="navbar">
-        <div class="container nav-container">
-            <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="hamburger-lines">
-              <span class="line line1"></span>
-              <span class="line line2"></span>
-              <span class="line line3"></span>
-            </div>  
-          <div class="logo">
-            <h1>Navbar</h1>
-          </div>
-          <div class="menu-items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">blogs</a></li>
-            <li><a href="#">portfolio</a></li>
-            <li><a href="#">contact</a></li>
-          </div>
-        </div>
-      </div>
-    </nav>
+  <?php
+  include '../navigation.php';
+  ?>
+  <div>
+    <p>
+      <label class="btn" for="modal-1">+</label>
+      <label class="btn btn--red" for="modal-2">-</label>
+      <label class="btn btn--blue" for="modal-3">*</label>
+    </p>
+  </div>
 
-    <h1 style="text-align: center">Create</h1>
-    <div class="ui form">
-      <form id="create_user" style="margin-bottom: 30px">
-        <div class="required field">
-          <label>Name</label>
-          <input id="name" type="text" name="name" placeholder="Name" />
-        </div>
-        <div class="required field">
-          <label>Birthday</label>
-          <input id="birthday" type="text" name="birthday" placeholder="dd/mm/yyyy"></input>
-        </div>
-        <div class="required field">
-          <label>Phone</label>
-          <input id="phone" type="number" name="phone" placeholder="0901234567"></input>
-        </div>
-        <div class="field">
-          <label>E-mail</label>
-          <input id="email" type="email"  name="email" placeholder="joe@schmoe.com">
-        </div>
-        <div class="field">
-          <label>Country</label>
-          <input id="country" type="text" name="country" placeholder="Vietnam"></input>
-        </div>
+  <input class="modal-state" id="modal-1" type="checkbox" />
+  <div class="modal">
+    <label class="modal__bg" for="modal-1"></label>
+    <div class="modal__inner">
+      <label class="modal__close" for="modal-1"></label>
 
-        <!-- <input id="name" type="text" placeholder="Name"></input>
-        <input id="birthday" type="text" placeholder="Birthday: dd/mm/yyyy"></input>
-        <input id="country" placeholder="Country"></input>
-        <input id="email" type="text" placeholder="Email: abc@gmail.com"></input>
-        <input id="phone" type="text" placeholder="Phone: 0901234567"></input> -->
-      </form>  
-      <div style="display: flex; justify-content: center">
-        <a id="back" class="ui basic button" href="index.html">Back</a>
-        <button id="create" class="ui submit button" onClick="apiCreate()">
-          Create
-        </button>
+      <div class="ui form">
+        <form id="create_user" style="margin-bottom: 30px">
+          <div class="required field">
+            <label>Telefono</label>
+            <input id="name" type="text" name="name" placeholder="Name" />
+          </div>
+          <div class="required field">
+            <label>Contrasena</label>
+            <input id="birthday" type="password" name="birthday" placeholder="********"></input>
+          </div>
+          <div class="required field">
+            <label>Nombre</label>
+            <input id="phone" type="text" name="phone" placeholder="(664) 123-4567"></input>
+          </div>
+          <div class="field">
+            <label>Apellido</label>
+            <input id="email" type="email"  name="email" placeholder="joe@schmoe.com">
+          </div>
+          <div class="required field">
+            <label>Rol</label>
+            <select class="select-box-rol">
+              <option value="">Elige una opcion</option>
+              <option value="">Rescatista</option>
+              <option value="">Moderador</option>
+            </select>
+          </div>
+        </form>
+
+        <div style="display: flex; justify-content: center">
+          <a id="back" class="ui basic button" href="index.html">Back</a>
+          <button id="create" class="ui submit button" onClick="apiCreate()">
+            Create
+          </button>
+        </div>
       </div>
     </div>
-    <!-- <script>apiCreate()</script> -->
-  </body>
+  </div>
 
-  </body>
+
+  
+
+
+  
+  <!-- <script>apiCreate()</script> -->
+</body>
 </html>
