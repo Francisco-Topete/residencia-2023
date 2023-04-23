@@ -5,48 +5,58 @@
     android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    android:backgroundTint="#AA8ED6"
-    android:backgroundTintMode="add"
-    android:foregroundTint="@color/purple_200"
+    android:background="@color/mainColor"
     tools:context=".activityInicioSesion">
+
+    <ImageView
+        android:id="@+id/imageviewLogo"
+        android:layout_width="220dp"
+        android:layout_height="203dp"
+        app:chainUseRtl="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127"
+        app:srcCompat="@drawable/loginlogo" />
+
+    <TextView
+        android:id="@+id/labelLoginUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Bienvenido"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@id/linearlayoutLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageviewLogo"
+        app:layout_constraintVertical_bias="0.432" />
 
     <LinearLayout
         android:id="@+id/linearlayoutLogin"
         android:layout_width="409dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/mainColor"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageviewLogo"
-            android:layout_width="220dp"
-            android:layout_height="203dp"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="25dp"
-            app:srcCompat="@drawable/loginlogo" />
-
-        <TextView
-            android:id="@+id/labelLoginUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Bienvenido"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:typeface="normal" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609">
 
         <EditText
             android:id="@+id/textboxLoginUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/customtextbox"
             android:ems="10"
