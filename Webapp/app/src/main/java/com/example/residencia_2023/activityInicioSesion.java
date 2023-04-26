@@ -2,8 +2,10 @@ package com.example.residencia_2023;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +42,7 @@ public class activityInicioSesion extends AppCompatActivity {
                         URL endpoint;
                         String telefono = textboxLoginUsuario.getText().toString();
                         String contrasena = textboxLoginContrasena.getText().toString();
+                        String respuesta = "";
 
                         try
                         {
@@ -57,6 +60,9 @@ public class activityInicioSesion extends AppCompatActivity {
                             String jsonLogin = "{\"telefono\": \"" + telefono +
                                     "\", \"contrasena\": \"" + contrasena + "\"}";
 
+                            telefono = "";
+                            contrasena = "";
+
                             conn.getOutputStream().write(jsonLogin.getBytes());
 
                             try(BufferedReader br = new BufferedReader(
@@ -69,8 +75,32 @@ public class activityInicioSesion extends AppCompatActivity {
                                     response.append(responseLine.trim());
                                 }
 
-                                System.out.println(response.toString());
+                                jsonLogin = "";
+                                respuesta = response.toString();
+
+                                if(respuesta.contains("Correcta"))
+                                {
+                                    Handler handler=new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(activityInicioSesion.this,
+                                                    activityInicioSesion.class);
+                                            startActivity(intent);
+                                        }
+                                    },4000);
+                                }
+                                else
+                                {
+                                    respuesta=clearLogin();
+
+                                    Toast loginErroneo=Toast.makeText(getApplicationContext(),
+                                            "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
+                                    loginErroneo.setMargin(50,50);
+                                    loginErroneo.show();
+                                }
                             }
+
                         }
                         catch(Exception e)
                         {
@@ -78,6 +108,15 @@ public class activityInicioSesion extends AppCompatActivity {
                         }
                     }
                 });
+            }
+
+            public String clearLogin()
+            {
+                textboxLoginUsuario.setText("");
+                textboxLoginContrasena.setText("");
+                textboxLoginUsuario.hasFocus();
+
+                return "";
             }
         });
     }
