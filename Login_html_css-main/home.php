@@ -4,10 +4,10 @@
 
 <head>
 
-<!-- mapboxs-->
+<!-- librerias mapboxs-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-<!--mapboxs-->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -36,6 +36,7 @@
      <!-- clase contenedor para el google maps-->
     <div class="contenedor">
          <!-- insercion del  maps -->
+         
 <div id="mapa">
 <div id='map' style='width: 800px; height: 600px;'></div>
 <script>
@@ -47,6 +48,8 @@
   });
 
   map.addControl(new mapboxgl.NavigationControl());
+  
+  
 </script>
 
     </div>
