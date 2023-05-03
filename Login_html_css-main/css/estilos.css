@@ -36,11 +36,12 @@ body{
     margin: 0 auto;
     max-width: 1200px;
     width: 95%;
+    
 }
 
 .contenedorHome{
     
-   /* background-image: url('../img/patitas.jpg');*/
+
     margin: 5%;
     margin-top: 30vh;
     display: flex ;
@@ -72,6 +73,7 @@ div#map{
     height: 200px;
     flex: 0 0 calc(60%);
     position: relative;
+    border-radius: 5px;
     
 
     
@@ -110,6 +112,7 @@ div#map{
 .formulario{
     padding: 50px;
     background-color: var(--azul);
+    border-radius: 5px;
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
