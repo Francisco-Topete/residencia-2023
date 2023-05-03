@@ -153,7 +153,7 @@ div#map{
 }
 /*-----------------------filtros de censado---------------------------------------------------------------------------*/
 .texto-Filtros{
-  
+    color: var(--blanco);
     font-weight: bold;
     font-size: 18px;
     
