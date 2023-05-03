@@ -48,6 +48,7 @@ body{
 }
 
 .contenedorMapa{
+    background-image: url('../img/patitas.jpg');
     height: 50vh;
     margin: 5%;
     display: flex ;
