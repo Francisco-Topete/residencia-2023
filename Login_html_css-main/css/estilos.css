@@ -38,6 +38,7 @@ body{
 }
 
 .contenedorHome{
+    
     margin: 5%;
     margin-top: 30vh;
     display: flex ;
@@ -48,7 +49,7 @@ body{
 }
 
 .contenedorMapa{
-    background-image: url('../img/patitas.jpg');
+
     height: 50vh;
     margin: 5%;
     display: flex ;
@@ -58,6 +59,7 @@ body{
 }
 
 div#map{
+    background-image: url('../img/patitas.jpg');
     width: 800px; 
     height: 600px;
 }
