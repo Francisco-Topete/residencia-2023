@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-<!-- librerias mapboxs-->
+<!-- mapboxs-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-
+<!--mapboxs-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,40 +14,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <style>
-        
-        .contenedor{
-            height: 50vh;
-            margin: 5%;
-            display: flex ;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-        }
-    </style>
-    
+    <link rel="stylesheet" href="css/burgerMenu.css">
 </head>
 
 <body>
-     <!-- clase contenedor para el google maps-->
-    <div class="contenedor">
-         <!-- insercion del  maps -->
-         
-<div id="mapa">
-<div id='map' style='width: 800px; height: 600px;'></div>
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
+    <!-- clase contenedor para el maps-->
+<?php
+include 'navigation.php';
+?>
 
-  });
+<div class="contenedorHome">
 
-  map.addControl(new mapboxgl.NavigationControl());
-  
-  
-</script>
+         <!-- insercion del maps -->
+    <div class="contenedorMapa">
+        <div id="map"></div>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWFkYXJhYWxhbiIsImEiOiJjbGdqdzhzdXYwMHV4M2VxNXZiODV4c3VzIn0.doXQbG8IWzpjubw0hj1pDA';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11'
+            });
+
+            map.addControl(new mapboxgl.NavigationControl());
+            map.setView([32.3604400, -117.0464500], 7);
+        </script>
 
     </div>
      <!-- division para los filtros-->
@@ -59,20 +46,22 @@
         <div class="texto-Filtros">
              <!-- filtro para la especie -->
                 <label>Especie</label> <br>
-                <select class="select-box">
+                <select id="selectEspecie" class="select-box">
                     <option value="">Elige una opcion</option>
-                    <option value="">Perro</option>
-                    <option value="">Gato</option>
-                    <option value="">Otro</option> 
+
+                    <?php           
+                        include 'homeCallSelectOptions.php'; 
+                    ?>
+
                 </select><br>
 
                 <!-- filtro para la raza -->
                 <label>Raza</label> <br>
-                <select class="select-box">
+                <select id="selectRaza" class="select-box">
                 <option value="">Elige una opcion</option>
-                    <option value="">huky </option>
-                    <option value="">pitbull</option>
-                    <option value="">labrador</option>
+
+                <!-- Opciones estan en el javascript-->
+
                 </select><br>
 
                 <!-- filtro para el sexo -->
@@ -156,7 +145,8 @@
             
         </form>
     </div>
-<?php echo "Si" ?>
+<script src="js/mainHome.js"></script>
+
 </body>
 
 </html>
