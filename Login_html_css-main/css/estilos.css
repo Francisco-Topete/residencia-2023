@@ -18,7 +18,7 @@ html{
 }
 
 body{
-    background-image: url('../img/patitas.jpg');
+   background-image: url('../img/patitas2.png');
     font-family: var(--fuente);
     background-color: var(--azulOscuro);
     display: flex;
@@ -63,7 +63,7 @@ body{
 
 div#map{
     width: 600px; 
-    height: 600px;
+    height: 500px;
 }
 
 .imagen-formulario{
