@@ -36,7 +36,6 @@ include 'navigation.php';
             });
 
             map.addControl(new mapboxgl.NavigationControl());
-            map.setView([32.3604400, -117.0464500], 7);
         </script>
 
     </div>
@@ -57,7 +56,7 @@ include 'navigation.php';
 
                 <!-- filtro para la raza -->
                 <label>Raza</label> <br>
-                <select id="selectRaza" class="select-box">
+                <select id="selectRaza" class="select-box" disabled>
                 <option value="">Elige una opcion</option>
 
                 <!-- Opciones estan en el javascript-->
@@ -110,13 +109,6 @@ include 'navigation.php';
                     <option value="">Otro</option>
                 </select><br>
                 
-                <!-- filtro para la desnutricion -->
-                <label>Desnutricion</label> <br>
-                <select class="select-box">
-                <option value="">Elige una opcion</option>
-                    <option value="">Si </option>
-                    <option value="">No</option>
-                </select><br>
 
                 <!-- filtro para las heridas -->
                 <label>Heridas</label> <br>
