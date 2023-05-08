@@ -18,6 +18,7 @@ html{
 }
 
 body{
+   background-image: url('../img/patitas2.png');
     font-family: var(--fuente);
     background-color: var(--azulOscuro);
     display: flex;
@@ -35,9 +36,12 @@ body{
     margin: 0 auto;
     max-width: 1200px;
     width: 95%;
+    
 }
 
 .contenedorHome{
+    
+
     margin: 5%;
     margin-top: 30vh;
     display: flex ;
@@ -48,6 +52,7 @@ body{
 }
 
 .contenedorMapa{
+
     height: 50vh;
     margin: 5%;
     display: flex ;
@@ -57,8 +62,8 @@ body{
 }
 
 div#map{
-    width: 800px; 
-    height: 600px;
+    width: 600px; 
+    height: 500px;
 }
 
 .imagen-formulario{
@@ -68,6 +73,8 @@ div#map{
     height: 200px;
     flex: 0 0 calc(60%);
     position: relative;
+    border-radius: 5px;
+    
 
     
 }
@@ -79,7 +86,6 @@ div#map{
    bottom: 0;
    left: 0;
    right: 0;
-   
    background: linear-gradient(to right,rgba(141,169,196,.5), rgba(19, 64, 116, .5) );
    
 }
@@ -106,6 +112,7 @@ div#map{
 .formulario{
     padding: 50px;
     background-color: var(--azul);
+    border-radius: 5px;
 }
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
