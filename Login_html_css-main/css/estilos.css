@@ -73,10 +73,7 @@ div#map{
     height: 200px;
     flex: 0 0 calc(60%);
     position: relative;
-    border-radius: 5px;
-    
-
-    
+    border-radius: 5px; 
 }
 
 .imagen-formulario::before{
@@ -189,4 +186,23 @@ div#map{
     border-radius: 5px;
 }
 
+@media(min-width:1000px){
+    .contenedorHome{
+        display: flex;
+    }
 
+}
+@media(min-width:1000px){
+    .contenedorMapa{
+        display: flex;
+    }
+
+}
+
+@media(min-width:768px){
+    .Filtros{
+        height: auto;
+        background-position: right;
+    }
+
+}
