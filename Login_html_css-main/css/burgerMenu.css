@@ -13,8 +13,25 @@ nav{
     z-index: 5;
     top: 0;
     background-color: #B97375;
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
-
+@media all and (min-width:768px){
+  .nav{
+    justify-content: space-around;
+    flex: 100%;
+  }
+}
+@media all and (min-width:480px){
+  .nav{
+    flex-flow: column wrap;
+    padding: 0;
+    padding: 10px;
+    border-top: 1px ;
+  }
+} 
 
 .container {
     margin: 0;

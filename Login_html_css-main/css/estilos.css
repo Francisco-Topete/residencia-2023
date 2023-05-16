@@ -39,32 +39,56 @@ body{
     
 }
 
-.contenedorHome{
-    
 
-    margin: 5%;
-    margin-top: 30vh;
-    display: flex ;
-    flex-direction: row;
-    justify-content: center;
+.Filtros{
     align-items: center;
+    max-width: 300px;
+    width: 100%;
+    padding: 50px;
+    background-color: var(--azul);
     border-radius: 5px;
+    left: 230px;
+    margin-right: 10px;
 }
-
+.texto-Filtros{
+    
+    color: var(--blanco);
+    font-weight: bold;
+    font-size: 18px;
+    
+   
+}
 .contenedorMapa{
-
     height: 50vh;
     margin: 5%;
-    display: flex ;
-    flex-direction: row;
-    justify-content: left;
+    display: flex ;  
+    justify-content: center;
     align-items: center;
+    flex-direction: row;
+    max-width: 1000px;
+    text-align: center;
 }
+.contenedorMapa::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+ }
 
 div#map{
     width: 600px; 
     height: 500px;
+    display: flex ;  
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 10px;
+   
 }
+
 
 .imagen-formulario{
     background-image: url('../img/3dogs.jpg');
@@ -103,6 +127,28 @@ div#map{
 @media(min-width:768px){
     .contenedor-formulario{
         display: flex;
+    }
+}
+@media all and (min-width:768px){
+    .Filtros{
+        height:calc(100vh - 96px);
+    }
+}
+@media all and (min-width:480px){
+    .Filtros{
+        height:calc(100vh - 168px);
+    }
+} 
+@media all and (min-width:768px){
+    .contenedorMapa{
+       
+        height:calc(100vh - 96px);
+    }
+}
+@media all and (min-width:480px){
+    .contenedorMapa{
+       
+        height:calc(100vh - 168px);
     }
 }
 
@@ -153,19 +199,8 @@ div#map{
     cursor: pointer;
     background-color: var(--azulOscuro);
 }
-/*-----------------------filtros de censado---------------------------------------------------------------------------*/
-.texto-Filtros{
-    color: var(--blanco);
-    font-weight: bold;
-    font-size: 18px;
-    
-   
-}
-.Filtros{
-    padding: 50px;
-    background-color: var(--azul);
-    border-radius: 5px;
-}
+/*-----------------------filtros de censado----------------------------------*/
+
 .texto-formulario h2, .input label, .password-olvidada a, .texto-formulario p{
     color: var(--blanco);
     
@@ -186,23 +221,3 @@ div#map{
     border-radius: 5px;
 }
 
-@media(min-width:1000px){
-    .contenedorHome{
-        display: flex;
-    }
-
-}
-@media(min-width:1000px){
-    .contenedorMapa{
-        display: flex;
-    }
-
-}
-
-@media(min-width:768px){
-    .Filtros{
-        height: auto;
-        background-position: right;
-    }
-
-}
