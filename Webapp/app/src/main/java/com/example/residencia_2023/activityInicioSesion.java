@@ -1,11 +1,15 @@
 package com.example.residencia_2023;
 
+import static java.sql.DriverManager.println;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,8 +50,8 @@ public class activityInicioSesion extends AppCompatActivity {
 
                         try
                         {
-                            endpoint = new URL("http://201.170.172.111:8080/residencia-2023/" +
-                                    "Login_html_css-main/apilogin.php");
+                            endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
+                                    "apilogin.php");
                             HttpURLConnection conn =
                                     (HttpURLConnection) endpoint.openConnection();
 
@@ -80,24 +84,12 @@ public class activityInicioSesion extends AppCompatActivity {
 
                                 if(respuesta.contains("Correcta"))
                                 {
-                                    Handler handler=new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = new Intent(activityInicioSesion.this,
-                                                    activityInicioSesion.class);
-                                            startActivity(intent);
-                                        }
-                                    },4000);
+                                    loginSuccess();
                                 }
                                 else
                                 {
                                     respuesta=clearLogin();
-
-                                    Toast loginErroneo=Toast.makeText(getApplicationContext(),
-                                            "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
-                                    loginErroneo.setMargin(50,50);
-                                    loginErroneo.show();
+                                    loginFail();
                                 }
                             }
 
@@ -118,6 +110,37 @@ public class activityInicioSesion extends AppCompatActivity {
 
                 return "";
             }
+
+            public void loginSuccess()
+            {
+                Handler handler=new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(activityInicioSesion.this,
+                                activityRescatistaHome.class);
+                        startActivity(intent);
+                    }
+                },4000);
+            }
+            public void loginFail()
+            {
+                Thread thread = new Thread(){
+                    public void run(){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast loginErroneo = Toast.makeText(getApplicationContext(),
+                                        "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
+                                loginErroneo.setMargin(50,50);
+                                loginErroneo.show();
+                            }
+                        });
+                    }
+                };
+                thread.start();
+            }
         });
+
+
     }
 }
