@@ -33,13 +33,13 @@
             if ($row['Contrasena_Usuario']) //Si en lo que recorremos el arreglo llegamos a la columna de la contrasena...
             { 
                 $_SESSION['user_id'] = $query['Telefono_Usuario']; //Tomaremos el telefono como dato de la sesion.
-                header('Location: '.'home.php'); //Entraremos a la plataforma web con una redireccion...
+                header('Location: '.'home'); //Entraremos a la plataforma web con una redireccion...
                 die(); //y mataremos este PHP.
 
             } 
             else //Si no...
             { 
-                header('Location: '.'index.php'); //Volveremos a la pantalla de inicio de sesion.
+                header('Location: /'); //Volveremos a la pantalla de inicio de sesion.
             }
         }
     }   
