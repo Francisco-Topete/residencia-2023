@@ -23,7 +23,7 @@
         </div>
         <!-- Este es el formulario POST de inicio de sesion; el usuario introducira su numerod e telefono
     y contraseña -->
-        <form method="post" action="login" class="formulario">
+        <form method="post" action="login.php" class="formulario">
             <div class="texto-formulario">
                 <h2>Bienvenido</h2>
                 <p>Inicia sesión con tu cuenta</p>
