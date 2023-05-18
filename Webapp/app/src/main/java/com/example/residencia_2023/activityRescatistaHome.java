@@ -67,7 +67,7 @@ public class activityRescatistaHome extends AppCompatActivity {
                                 activityAnadirAnimal.class);
                         startActivity(intent);
                     }
-                },50);
+                },10);
             }
         });
     }
