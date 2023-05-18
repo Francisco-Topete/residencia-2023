@@ -41,33 +41,31 @@
 
     <LinearLayout
         android:id="@+id/linearlayoutLogin"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="355dp"
+        android:layout_height="178dp"
+        android:layout_marginEnd="2dp"
         android:background="@color/mainColor"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609">
+        app:layout_constraintVertical_bias="0.608">
 
         <EditText
             android:id="@+id/textboxLoginUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:background="@drawable/customtextbox"
             android:ems="10"
             android:enabled="true"
             android:fontFamily="sans-serif"
             android:hint="Telefono"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="Telefono"
-            android:textColor="#DFDFDF"
+            android:textColor="#454545"
             android:textSize="22sp"
             android:typeface="normal" />
 
@@ -81,18 +79,16 @@
             android:id="@+id/textboxLoginContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp"
             android:background="@drawable/customtextbox"
             android:ems="10"
             android:enabled="true"
             android:fontFamily="sans-serif"
+            android:hint="********"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="@string/loginContrasena"
-            android:textColor="#DFDFDF"
+            android:textColor="#454545"
             android:textSize="22sp"
             android:typeface="normal" />
 
@@ -101,9 +97,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="21dp"
             android:background="@drawable/custombutton"
             android:ellipsize="none"
             android:fontFamily="sans-serif-medium"
@@ -113,4 +107,19 @@
             android:textColor="#DFDFDF"
             android:textSize="22sp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#668C8C8C"
+        android:gravity="center"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:layout_width="124dp"
+            android:layout_height="120dp"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

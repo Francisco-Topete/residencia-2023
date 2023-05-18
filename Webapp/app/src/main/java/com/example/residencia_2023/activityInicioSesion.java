@@ -1,5 +1,7 @@
 package com.example.residencia_2023;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static java.sql.DriverManager.println;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +28,18 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class activityInicioSesion extends AppCompatActivity {
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
+
         EditText textboxLoginUsuario = (EditText) findViewById(R.id.textboxLoginUsuario);
+        textboxLoginUsuario.addTextChangedListener(new PhoneNumberFormattingTextWatcher("MX"));
+
+
         EditText textboxLoginContrasena = (EditText) findViewById(R.id.textboxLoginContrasena);
 
         buttonLogin.setOnClickListener(new View.OnClickListener()
@@ -44,7 +52,8 @@ public class activityInicioSesion extends AppCompatActivity {
                     public void run()
                     {
                         URL endpoint;
-                        String telefono = textboxLoginUsuario.getText().toString();
+                        String telefono = formatearTelefono(textboxLoginUsuario.getText().toString());
+                        Log.d("Telefono formateado: ", telefono);
                         String contrasena = textboxLoginContrasena.getText().toString();
                         String respuesta = "";
 
@@ -82,6 +91,10 @@ public class activityInicioSesion extends AppCompatActivity {
                                 jsonLogin = "";
                                 respuesta = response.toString();
 
+                                buttonLogin.setClickable(false);
+                                textboxLoginUsuario.setClickable(false);
+                                textboxLoginContrasena.setClickable(false);
+
                                 if(respuesta.contains("Correcta"))
                                 {
                                     loginSuccess();
@@ -107,12 +120,54 @@ public class activityInicioSesion extends AppCompatActivity {
                 textboxLoginUsuario.setText("");
                 textboxLoginContrasena.setText("");
                 textboxLoginUsuario.hasFocus();
-
                 return "";
             }
 
+            public String formatearTelefono(String s)
+            {
+                s = s.replace(" ", "");
+
+                if(s.length() >= 10) {
+                    char[] telefonoCaracteres = s.toCharArray();
+
+                    String mascara = "(xxx) xxx-xxxx";
+                    char[] mascaraCaracteres = mascara.toCharArray();
+
+                    StringBuilder telefonoFormateado = new StringBuilder();
+
+                    int y = 0;
+                    for (int x = 0; x < mascara.length(); x++) {
+                        if (mascaraCaracteres[x] == '(' || mascaraCaracteres[x] == ')' || mascaraCaracteres[x] == '-' || mascaraCaracteres[x] == ' ') {
+                            telefonoFormateado.append(mascaraCaracteres[x]);
+                        } else {
+                            if (mascaraCaracteres[x] == 'x') {
+                                telefonoFormateado.append(telefonoCaracteres[y]);
+                                y++;
+                            }
+                        }
+                    }
+
+                    s = telefonoFormateado.toString();
+                    return s;
+                }
+                else
+                {
+                    return "000000000";
+                }
+            }
             public void loginSuccess()
             {
+                Thread thread = new Thread(){
+                    public void run(){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                findViewById(R.id.loadingPanel).setVisibility(VISIBLE);
+                            }
+                        });
+                    }
+                };
+
+                thread.start();
                 Handler handler=new Handler(Looper.getMainLooper());
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -120,8 +175,9 @@ public class activityInicioSesion extends AppCompatActivity {
                         Intent intent = new Intent(activityInicioSesion.this,
                                 activityRescatistaHome.class);
                         startActivity(intent);
+                        finish();
                     }
-                },4000);
+                },2000);
             }
             public void loginFail()
             {
@@ -129,18 +185,47 @@ public class activityInicioSesion extends AppCompatActivity {
                     public void run(){
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast loginErroneo = Toast.makeText(getApplicationContext(),
-                                        "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
-                                loginErroneo.setMargin(50,50);
-                                loginErroneo.show();
+                                findViewById(R.id.loadingPanel).setVisibility(VISIBLE);
                             }
                         });
                     }
                 };
                 thread.start();
+
+                Handler handler=new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    public void run(){
+                        buttonLogin.setClickable(true);
+                        textboxLoginUsuario.setClickable(true);
+                        textboxLoginContrasena.setClickable(true);
+                        findViewById(R.id.loadingPanel).setVisibility(INVISIBLE);
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast loginErroneo = Toast.makeText(getApplicationContext(),
+                                        "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
+                                loginErroneo.show();
+                            }
+                        });
+                    }
+                },2000);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Presiona atras de nuevo para salir.", Toast.LENGTH_SHORT).show();
 
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

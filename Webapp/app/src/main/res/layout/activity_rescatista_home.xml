@@ -15,6 +15,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Rescatadores" />
+
+        <ImageView
+            android:id="@+id/imageViewToolbarAnadirAnimal"
+            android:layout_width="51dp"
+            android:layout_height="49dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbarMain"
+            app:srcCompat="@drawable/anadiranimallogo" />
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
 
@@ -22,7 +44,7 @@
             android:layout_height="131dp"
             android:background="@color/mainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbarMain">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -50,6 +72,7 @@
                     app:layout_constraintLeft_toRightOf="@id/imageviewAppbarLogo"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -64,6 +87,7 @@
             app:layout_constraintTop_toBottomOf="@id/appbar">
 
         </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
