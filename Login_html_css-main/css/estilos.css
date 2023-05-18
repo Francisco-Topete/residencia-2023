@@ -59,8 +59,8 @@ body{
    
 }
 .contenedorMapa{
-    height: 50vh;
-    margin: 5%;
+    height: 10vh;
+    margin-left: 180px;
     display: flex ;  
     justify-content: center;
     align-items: center;
@@ -147,6 +147,18 @@ div#map{
 }
 @media all and (min-width:480px){
     .contenedorMapa{
+       
+        height:calc(100vh - 168px);
+    }
+}
+@media all and (min-width:768px){
+    .contenedorfiltros{
+       
+        height:calc(100vh - 96px);
+    }
+}
+@media all and (min-width:480px){
+    .contenedorfiltros{
        
         height:calc(100vh - 168px);
     }
