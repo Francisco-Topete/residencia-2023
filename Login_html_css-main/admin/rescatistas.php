@@ -80,11 +80,6 @@
       </div>
     </div>
   </div>
-
-
-  
-
-
   
   <!-- <script>apiCreate()</script> -->
 </body>
