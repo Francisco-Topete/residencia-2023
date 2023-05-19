@@ -90,6 +90,7 @@ public class activityInicioSesion extends AppCompatActivity {
 
                                 jsonLogin = "";
                                 respuesta = response.toString();
+                                Log.d("Respuesta ", respuesta);
 
                                 buttonLogin.setClickable(false);
                                 textboxLoginUsuario.setClickable(false);

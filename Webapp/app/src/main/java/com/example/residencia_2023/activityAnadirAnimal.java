@@ -28,7 +28,7 @@ public class activityAnadirAnimal extends AppCompatActivity {
                 try
                 {
                     endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
-                            "apiform.php");
+                            "apiCallSelectOptions.php");
                     HttpURLConnection conn =
                             (HttpURLConnection) endpoint.openConnection();
 
@@ -48,11 +48,8 @@ public class activityAnadirAnimal extends AppCompatActivity {
                         }
 
                         respuesta = response.toString();
-
-
-
+                        Log.d("JSON: ", respuesta);
                     }
-
                 }
                 catch(Exception e)
                 {
