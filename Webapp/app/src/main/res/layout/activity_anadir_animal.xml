@@ -20,17 +20,117 @@
         app:srcCompat="@drawable/cameraicon" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerEspecie"
         android:layout_width="330dp"
         android:layout_height="50dp"
         android:background="@color/palleteColor2"
+        android:backgroundTintMode="multiply"
         android:foregroundTint="#000000"
         android:foregroundTintMode="add"
         android:pointerIcon="cell"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewPhoto"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.037"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerRaza"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerEspecie"
+        app:layout_constraintVertical_bias="0.02"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerSexo"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerRaza"
+        app:layout_constraintVertical_bias="0.028"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerSituacion"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSexo"
+        app:layout_constraintVertical_bias="0.034"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerEdad"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSituacion"
+        app:layout_constraintVertical_bias="0.038"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerProblemasSalud"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerEdad"
+        app:layout_constraintVertical_bias="0.045"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerHeridas"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerProblemasSalud"
+        app:layout_constraintVertical_bias="0.05"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerComportamiento"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:background="@color/palleteColor2"
+        android:pointerIcon="cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerHeridas"
+        app:layout_constraintVertical_bias="0.144"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
