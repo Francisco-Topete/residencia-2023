@@ -29,58 +29,27 @@
   <?php
   include '../navigation.php';
   ?>
-  <div>
-    <p>
-      <label class="btn" for="modal-1">+</label>
-      <label class="btn btn--red" for="modal-2">-</label>
-      <label class="btn btn--blue" for="modal-3">*</label>
-    </p>
-  </div>
+    <div class="contenedor">
 
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal">
-    <label class="modal__bg" for="modal-1"></label>
-    <div class="modal__inner">
-      <label class="modal__close" for="modal-1"></label>
+        <div class="div-formulario">
+            <h2>Formulario</h2>
 
-      <div class="ui form">
-        <form id="create_user" style="margin-bottom: 30px">
-          <div class="required field">
-            <label>Telefono</label>
-            <input id="name" type="text" name="name" placeholder="Name" />
-          </div>
-          <div class="required field">
-            <label>Contrasena</label>
-            <input id="birthday" type="password" name="birthday" placeholder="********"></input>
-          </div>
-          <div class="required field">
-            <label>Nombre</label>
-            <input id="phone" type="text" name="phone" placeholder="(664) 123-4567"></input>
-          </div>
-          <div class="field">
-            <label>Apellido</label>
-            <input id="email" type="email"  name="email" placeholder="joe@schmoe.com">
-          </div>
-          <div class="required field">
-            <label>Rol</label>
-            <select class="select-box-rol">
-              <option value="">Elige una opcion</option>
-              <option value="">Rescatista</option>
-              <option value="">Moderador</option>
-            </select>
-          </div>
-        </form>
-
-        <div style="display: flex; justify-content: center">
-          <a id="back" class="ui basic button" href="index.html">Back</a>
-          <button id="create" class="ui submit button" onClick="apiCreate()">
-            Create
-          </button>
+            <form action="#" id="formulario">
+                <input type="text" id="usuario" placeholder="Ingresa tu usuario">
+                <input type="text" id="contrasena" placeholder="Ingresa tu contraseña">
+                <input type="text" id="email" placeholder="Ingresa tu email">
+                <button type="submit" id="btnAgregar">Agregar</button>
+            </form>
         </div>
-      </div>
+
+        <div class="div-listado">
+            <h2>Listado Empleados</h2>
+            <div class="div-empleados">
+                
+            </div>
+        </div>
+
     </div>
-  </div>
-  
   <!-- <script>apiCreate()</script> -->
 </body>
 </html>
