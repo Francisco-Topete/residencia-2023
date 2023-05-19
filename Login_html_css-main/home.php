@@ -35,7 +35,7 @@
                                      </script>
                                      </div>
 
-<div class="contenedorfiltros">                                   
+                                   
 <form class="Filtros">
 <div class="texto-Filtros">
    <!-- filtro para la especie -->
