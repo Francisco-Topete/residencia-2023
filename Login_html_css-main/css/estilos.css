@@ -41,7 +41,6 @@ body{
 
 
 .Filtros{
-    margin-left: 180px;
     align-items: center;
     max-width: 300px;
     width: 100%;
@@ -49,6 +48,7 @@ body{
     background-color: var(--azul);
     border-radius: 5px;
     left: 230px;
+    margin-right: 10px;
 }
 .texto-Filtros{
     
@@ -68,15 +68,6 @@ body{
     max-width: 1000px;
     text-align: center;
 }
-.contenedorMapa::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    
- }
 
 div#map{
     width: 600px; 
@@ -98,6 +89,17 @@ div#map{
     flex: 0 0 calc(60%);
     position: relative;
     border-radius: 5px; 
+}
+
+.imagen-formulario::before{
+   content: '';
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: linear-gradient(to right,rgba(141,169,196,.5), rgba(19, 64, 116, .5) );
+   
 }
 
 @media(min-width:768px){
