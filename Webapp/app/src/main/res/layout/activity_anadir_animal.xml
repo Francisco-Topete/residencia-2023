@@ -33,8 +33,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewPhoto"
-        app:layout_constraintVertical_bias="0.037"
-        />
+        app:layout_constraintVertical_bias="0.037" />
 
     <Spinner
         android:id="@+id/spinnerRaza"
@@ -47,8 +46,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerEspecie"
-        app:layout_constraintVertical_bias="0.02"
-        />
+        app:layout_constraintVertical_bias="0.02" />
 
     <Spinner
         android:id="@+id/spinnerSexo"
@@ -61,8 +59,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerRaza"
-        app:layout_constraintVertical_bias="0.028"
-        />
+        app:layout_constraintVertical_bias="0.028" />
 
     <Spinner
         android:id="@+id/spinnerSituacion"
@@ -75,8 +72,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerSexo"
-        app:layout_constraintVertical_bias="0.034"
-        />
+        app:layout_constraintVertical_bias="0.034" />
 
     <Spinner
         android:id="@+id/spinnerEdad"
@@ -89,8 +85,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerSituacion"
-        app:layout_constraintVertical_bias="0.038"
-        />
+        app:layout_constraintVertical_bias="0.038" />
 
     <Spinner
         android:id="@+id/spinnerProblemasSalud"
@@ -103,8 +98,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerEdad"
-        app:layout_constraintVertical_bias="0.045"
-        />
+        app:layout_constraintVertical_bias="0.045" />
 
     <Spinner
         android:id="@+id/spinnerHeridas"
@@ -117,8 +111,7 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerProblemasSalud"
-        app:layout_constraintVertical_bias="0.05"
-        />
+        app:layout_constraintVertical_bias="0.05" />
 
     <Spinner
         android:id="@+id/spinnerComportamiento"
@@ -131,6 +124,38 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerHeridas"
-        app:layout_constraintVertical_bias="0.144"
-        />
+        app:layout_constraintVertical_bias="0.144" />
+
+    <Button
+        android:id="@+id/buttonRegistrarAnimal"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="193dp"
+        android:layout_height="63dp"
+        android:background="@drawable/custombuttonform"
+        android:ellipsize="none"
+        android:fontFamily="sans-serif-medium"
+        android:minHeight="48dip"
+        android:text="Registrar"
+        android:textAllCaps="false"
+        android:textColor="#DFDFDF"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <RelativeLayout
+        android:id="@+id/loadingPanelAnadirAnimal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#668C8C8C"
+        android:gravity="center"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:layout_width="124dp"
+            android:layout_height="120dp"
+            android:indeterminate="true" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

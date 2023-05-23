@@ -1,16 +1,20 @@
 package com.example.residencia_2023;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -63,9 +67,37 @@ public class activityRescatistaHome extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(activityRescatistaHome.this,
-                                activityAnadirAnimal.class);
-                        startActivity(intent);
+                        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        boolean gps_enabled = false;
+                        boolean network_enabled = false;
+
+                        try {
+                            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        } catch(Exception ex) {}
+
+                        try {
+                            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                        } catch(Exception ex) {}
+
+                        if(!gps_enabled || !network_enabled) {
+                            // notify user
+                            new AlertDialog.Builder(activityRescatistaHome.this)
+                                    .setMessage("Por favor asegurate de tener conexion a internet y la localizacion prendida.")
+                                    .setPositiveButton("Activar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                        }
+                                    })
+                                    .setNegativeButton("Cancelar",null)
+                                    .show();
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(activityRescatistaHome.this,
+                                    activityAnadirAnimal.class);
+                            startActivity(intent);
+                        }
                     }
                 },10);
             }

@@ -88,6 +88,8 @@ public class activityInicioSesion extends AppCompatActivity {
                                     response.append(responseLine.trim());
                                 }
 
+                                conn.disconnect();
+
                                 jsonLogin = "";
                                 respuesta = response.toString();
                                 Log.d("Respuesta ", respuesta);
@@ -156,6 +158,7 @@ public class activityInicioSesion extends AppCompatActivity {
                     return "000000000";
                 }
             }
+
             public void loginSuccess()
             {
                 Thread thread = new Thread(){
