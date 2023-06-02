@@ -172,16 +172,11 @@ public class activityInicioSesion extends AppCompatActivity {
                 };
 
                 thread.start();
-                Handler handler=new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(activityInicioSesion.this,
-                                activityRescatistaHome.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                },2000);
+
+                Intent intentres = new Intent(activityInicioSesion.this,
+                        activityRescatistaHome.class);
+                startActivity(intentres);
+                finish();
             }
             public void loginFail()
             {
@@ -196,22 +191,24 @@ public class activityInicioSesion extends AppCompatActivity {
                 };
                 thread.start();
 
-                Handler handler=new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    public void run(){
+                new Thread(new Runnable() {
+                    public void run() {
                         buttonLogin.setClickable(true);
                         textboxLoginUsuario.setClickable(true);
                         textboxLoginContrasena.setClickable(true);
-                        findViewById(R.id.loadingPanel).setVisibility(INVISIBLE);
                         runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast loginErroneo = Toast.makeText(getApplicationContext(),
-                                        "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
-                                loginErroneo.show();
+                            public void run()
+                            {
+                                    findViewById(R.id.loadingPanel).setVisibility(INVISIBLE);
+                                    Toast loginErroneo = Toast.makeText(getApplicationContext(),
+                                            "Datos incorrectos, vuelvalo a intentar",Toast.LENGTH_SHORT);
+                                    loginErroneo.show();
                             }
                         });
+
+                        try { Thread.sleep(2000); } catch (Exception e) {}
                     }
-                },2000);
+                }).start();
             }
         });
     }
@@ -225,11 +222,13 @@ public class activityInicioSesion extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Presiona atras de nuevo para salir.", Toast.LENGTH_SHORT).show();
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
+        Handler handler2=new Handler(Looper.getMainLooper());
+        handler2.postDelayed(new Runnable()
+        {
+            public void run()
+            {
+                doubleBackToExitPressedOnce = false;
             }
-        }, 2000);
+        },2000);
     }
 }

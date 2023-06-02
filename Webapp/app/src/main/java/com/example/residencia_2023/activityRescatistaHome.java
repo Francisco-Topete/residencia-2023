@@ -1,5 +1,7 @@
 package com.example.residencia_2023;
 
+import static android.view.View.INVISIBLE;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +26,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.residencia_2023.databinding.ActivityRescatistaHomeBinding;
 
@@ -38,6 +42,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class activityRescatistaHome extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
@@ -57,6 +62,8 @@ public class activityRescatistaHome extends AppCompatActivity {
         binding = ActivityRescatistaHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ImageView imageViewToolbarAnadirAnimal = (ImageView) findViewById(R.id.imageViewToolbarAnadirAnimal);
+        imageViewToolbarAnadirAnimal.setClickable(false);
+        imageViewToolbarAnadirAnimal.setEnabled(false);
         imageViewToolbarAnadirAnimal.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -97,6 +104,7 @@ public class activityRescatistaHome extends AppCompatActivity {
                             Intent intent = new Intent(activityRescatistaHome.this,
                                     activityAnadirAnimal.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
                 },10);
@@ -114,11 +122,13 @@ public class activityRescatistaHome extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Presiona atras de nuevo para salir.", Toast.LENGTH_SHORT).show();
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
+        Handler handler2=new Handler(Looper.getMainLooper());
+        handler2.postDelayed(new Runnable()
+        {
+            public void run()
+            {
+                doubleBackToExitPressedOnce = false;
             }
-        }, 2000);
+        },2000);
     }
 }

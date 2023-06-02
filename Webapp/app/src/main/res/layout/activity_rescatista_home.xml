@@ -31,6 +31,9 @@
             android:id="@+id/imageViewToolbarAnadirAnimal"
             android:layout_width="51dp"
             android:layout_height="49dp"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:longClickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.955"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +90,19 @@
             app:layout_constraintTop_toBottomOf="@id/appbar">
 
         </FrameLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <RelativeLayout
+        android:id="@+id/loadingPanelHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#668C8C8C"
+        android:gravity="center"
+        android:visibility="visible">
 
+        <ProgressBar
+            android:layout_width="124dp"
+            android:layout_height="120dp"
+            android:indeterminate="true" />
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

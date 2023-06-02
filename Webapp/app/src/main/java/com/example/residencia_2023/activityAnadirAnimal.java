@@ -6,12 +6,10 @@ import static android.view.View.VISIBLE;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,19 +19,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -49,15 +43,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 public class activityAnadirAnimal extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1234;
@@ -109,6 +101,12 @@ public class activityAnadirAnimal extends AppCompatActivity {
                         {
                             URL endpoint;
 
+                            int hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                                    minuto = Calendar.getInstance().get(Calendar.MINUTE),
+                                    dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
+                                    mes = Calendar.getInstance().get(Calendar.MONTH) + 1,
+                                    anio = Calendar.getInstance().get(Calendar.YEAR);
+
                             String animalEspecie = spinnerEspecie.getSelectedItem().toString(),
                                     animalRaza = spinnerRaza.getSelectedItem().toString(),
                                     animalSexo = spinnerSexo.getSelectedItem().toString(),
@@ -116,7 +114,9 @@ public class activityAnadirAnimal extends AppCompatActivity {
                                     animalSituacion = spinnerSituacion.getSelectedItem().toString(),
                                     animalProblemasSalud = spinnerProblemasSalud.getSelectedItem().toString(),
                                     animalHeridas = spinnerHeridas.getSelectedItem().toString(),
-                                    animalComportamiento = spinnerComportamiento.getSelectedItem().toString();
+                                    animalComportamiento = spinnerComportamiento.getSelectedItem().toString(),
+                                    animalregistroHora =  (String.valueOf(hora) + ":" + String.valueOf(minuto)),
+                                    animalregistroFecha = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(anio));
 
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), fotoUri);
                             Matrix matrix = new Matrix();
@@ -144,6 +144,8 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             byte[] b64 = Base64.encode(b,Base64.DEFAULT);
                             String animalFoto = new String(b64, StandardCharsets.UTF_8);
 
+
+
                             JSONObject jsonAnimal = new JSONObject();
                             jsonAnimal.put("fotografia",animalFoto);
                             jsonAnimal.put("especie",animalEspecie);
@@ -156,6 +158,8 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             jsonAnimal.put("comportamiento",animalComportamiento);
                             jsonAnimal.put("locacion_latitud",latitude);
                             jsonAnimal.put("locacion_longitud",longitude);
+                            jsonAnimal.put("fecha_registro",animalregistroFecha);
+                            jsonAnimal.put("hora_registro",animalregistroHora);
                             String jsonStringAnimal = jsonAnimal.toString();
                             Log.d("JSON",jsonStringAnimal);
 
@@ -175,8 +179,39 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
                             wr.write(jsonStringAnimal);
                             wr.flush();
-
                             conn.disconnect();
+
+                            Handler handler=new Handler(Looper.getMainLooper());
+                            handler.postDelayed(new Runnable() {
+                                public void run(){
+                                    runOnUiThread(new Runnable() {
+                                        public void run() {
+                                            Toast cargaAnimal = Toast.makeText(getApplicationContext(),
+                                                    "Animal anadido al mapa!",Toast.LENGTH_SHORT);
+                                            cargaAnimal.show();
+                                        }
+                                    });
+                                }
+                            },2000);
+
+                            Handler handler2=new Handler(Looper.getMainLooper());
+                            handler2.postDelayed(new Runnable()
+                            {
+                                public void run()
+                                {
+                                    findViewById(R.id.loadingPanelHome).setVisibility(INVISIBLE);
+                                    runOnUiThread(new Runnable()
+                                    {
+                                        public void run()
+                                        {
+                                            Intent intent = new Intent(activityAnadirAnimal.this,
+                                                    activityRescatistaHome.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
+                                }
+                            },1000);
                         }
                         catch(Exception e)
                         {
@@ -276,26 +311,12 @@ public class activityAnadirAnimal extends AppCompatActivity {
             public void run(){
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        findViewById(R.id.loadingPanelAnadirAnimal).setVisibility(VISIBLE);
+                        findViewById(R.id.loadingPanelHome).setVisibility(VISIBLE);
                     }
                 });
             }
         };
         thread.start();
-
-        Handler handler=new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            public void run(){
-                findViewById(R.id.loadingPanelAnadirAnimal).setVisibility(INVISIBLE);
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast cargaAnimal = Toast.makeText(getApplicationContext(),
-                                "Animal anadido al mapa!",Toast.LENGTH_SHORT);
-                        cargaAnimal.show();
-                    }
-                });
-            }
-        },2000);
     }
 
     public void construirSpinners(String respuesta)
@@ -465,8 +486,7 @@ public class activityAnadirAnimal extends AppCompatActivity {
             case PERMISSION_CODE:
                 Log.d("Resultado del permiso","Veamos");
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                        && grantResults[1] == PackageManager.PERMISSION_GRANTED
-                        && grantResults[2] == PackageManager.PERMISSION_GRANTED)
+                        )
                 {
                     locationWizard();
                 }
@@ -486,5 +506,13 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             .show();
                 }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(activityAnadirAnimal.this,
+                activityRescatistaHome.class);
+        startActivity(intent);
+        finish();
     }
 }
