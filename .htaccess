@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteBase /
+
+RewriteCond %{THE_REQUEST} \s/index [NC]
+RewriteRule ^ / [NE,L,R]
+
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NE,L,R]
+
+# now we will internally map /file to /file.php
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)/?$ /$1.php  [L]

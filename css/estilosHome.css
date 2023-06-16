@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2? family= Poppins:wght@300;400;600;700 & display=swap');
+:root
+{
+    --azul:#B97375;
+    --azulResalta:#815051;
+    --azulHover:#96595a;
+    --azulOscuro:#F1E4E8;
+    --azulGris:#F1E4E8;
+    --blanco:#fff;
+    --fuente:'Quicksand', sans-serif;
+    --padding-container: 100px 0;
+    --color-title:#001A49;
+}
+
+html
+{
+    box-sizing: border-box;
+}
+
+*,*::after, *::before
+{
+    box-sizing: inherit;
+}
+
+#loading.display 
+{
+    visibility: visible;
+}
+
+#loadingBackground.display 
+{
+    visibility: visible;
+}
+
+@keyframes slide 
+{
+    from 
+    {
+        top: 120vh;
+    }
+    to 
+    {
+        visibility:visible;
+        top: 100px;
+    }
+}
+
+@keyframes slide-back
+{
+    from 
+    {
+        top: 100px;
+        
+    }
+    to 
+    {
+        top: 120vh; 
+    }
+}
+
+@keyframes spin 
+{
+    from 
+    {
+        transform: rotate(0deg);
+    }
+    to 
+    {
+        transform: rotate(360deg);
+    }
+}
+
+body
+{
+    background-image: url('../img/patitas2.png');
+    font-family: var(--fuente);
+    background-color: var(--azulOscuro);
+    align-items: center;
+    font-family: 'Poppins', sans-serif; 
+    overflow: hidden;
+}
+
+.contenedorMapa
+{
+    height: calc(100vh - 150px);
+    width: 94vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-top: 70px;   
+    background-color:yellow;
+    z-index: 1;
+}
+
+.switchFiltros
+{   
+    top: calc(100vh - 170px);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    background-color: var(--azulResalta);
+    color: white;
+    border-radius: 100%;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top:12px;
+    user-select: none;
+    font-size: 3.2em;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.switchFiltros:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 30px white;
+  }
+  
+  .switchFiltros:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  .switchFiltros:active {
+    top: calc(100vh - 172px);
+  }
+
+.contenedorFiltros
+{
+    top: 120vh;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    width: 300px;
+    height:90vh;
+    z-index: 2;
+}
+
+.filtrosVisible
+{
+    animation-name: slide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.filtrosHidden
+{
+    animation-name: slide-back;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.Filtros
+{
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: var(--azul);
+    border-radius: 5px;
+    left: 230px;
+    margin-right: 10px;
+    color: var(--blanco);
+    font-weight: bold;
+    font-size: 0.7em;
+}
+
+.texto-Filtros
+{
+    padding: 20px;
+    height: 45vh;
+    border-radius: 5px;
+    background-color: var(--azulHover);
+    overflow: scroll;
+}
+
+div#map{
+    width: 100%; 
+    height: 100%;
+    display: flex ;  
+    justify-content: center;
+    align-items: center;
+    z-index: 0.5;
+}
+
+.input label
+{
+    display: block;
+    margin: 20px 0;
+}
+
+/*-----------------------filtros de censado----------------------------------*/
+
+.icon
+{
+    border-left: .5px solid #001A49;
+}
+
+.select-box{
+    border: none;
+    appearance: none;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    padding: 5px 30px 5px 15px;
+    width: 100%;
+    color: #030303;
+    background-color: #F1E4E8;
+    font-size: 1.3em;
+    border-radius: 5px;
+}
+
+/*-------------Pantalla de carga (Llamadas de API)-----------------------------*/
+
+#loadingBackground
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:#030303;
+    z-index: 1;
+    visibility: hidden;
+    opacity:0.5;
+}
+
+#loading 
+{
+    position:relative;
+    width: 20em;
+    height: 20em;
+    border: 40px solid #f3f3f3;
+    border-top: 41px solid #9c41f2;
+    border-radius: 100%;
+    top: 25%;
+    margin:auto;
+    visibility: hidden;
+    animation: spin 1s infinite linear;
+}
+
+
+/*----------------------------------------------------- Celulares / Smartphones (Horizontal)---------------- */
+@media only screen and (min-width: 500px) and (min-height: 450px)
+{
+    .texto-Filtros
+    {
+        height: 65vh;
+    }
+}
+
+@media only screen and (min-width: 767px) and (min-height: 550px)
+{
+    .texto-Filtros
+    {
+        height: 45vh;
+    }
+}
+
+@media only screen and (min-height: 650px)
+{
+    .texto-Filtros
+    {
+        height: 52vh;
+    }
+}
+
+@media only screen and (min-height: 750px)
+{
+    .texto-Filtros
+    {
+        height: 59vh;
+    }
+}
+
+@media only screen and (min-height: 850px)
+{
+    .texto-Filtros
+    {
+        height: 64vh;
+    }
+}
+
+
+@media only screen and (min-width: 500px)
+{
+    .contenedorMapa
+    {
+        height: 79vh;
+    }
+
+    .switchFiltros
+    {   
+        height: 60px;
+        width: 60px;
+        font-size: 2.1em;
+        top: calc(100vh - 70px);
+    }
+  
+    .switchFiltros:active 
+    {
+        top: calc(100vh - 72px);
+    }
+
+    .contenedorFiltros
+    {
+        width: 450px;
+    }
+}
+
+/*----------------------------------------------------------------------------- Tabletas -------------------*/
+@media only screen and (min-width: 767px) and (min-height: 450px)
+{
+    .contenedorMapa
+    {
+        height: 88vh;
+    }
+
+    .texto-Filtros
+    {
+        padding: 40px;
+    }
+
+    .contenedorFiltros
+    {
+        height:92vh;
+    }
+
+    .switchFiltros
+    {   
+        top: calc(100vh - 170px);
+        height: 120px;
+        width: 120px;
+        padding-top: 22px;
+        font-size: 4em;
+    }
+  
+    .switchFiltros:active 
+    {
+        top: calc(100vh - 172px);
+    }
+
+    .Filtros
+    {
+        font-size: 1em;
+    }
+
+    .select-box
+    {
+        margin-top: 3px;
+        margin-bottom: 15px;
+        padding: 10px 30px 10px 15px;
+        font-size:1.1em;  
+    }
+}
+
+/*---------------------------------------------------------------------------- Laptops ---------------------*/
+@media only screen and (min-width: 992px) 
+{
+    .contenedorMapa
+    {
+        width: 98vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+    .switchFiltros
+    {   
+        top: 50vh;
+        left: 0;
+        right: 0;
+        margin-right: 0px;
+        position: absolute;
+        background-color: var(--azulResalta);
+        color: white;
+        border-radius: 20px 0px 0px 20px;
+        height: 120px;
+        width: 120px;
+        text-align: center;
+        box-sizing: border-box;
+        padding-top:30px;
+        user-select: none;
+        font-size: 3.2em;
+        font-weight: bold;
+        opacity: 0.8;
+        z-index: 3;
+    }
+
+    .texto-Filtros
+    {
+        height:94%;
+        font-size: 0.8em;
+    }
+
+    .select-box
+    {
+        margin-top: 3px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .switchFiltros:after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 20px 0px 0px 20px;
+        left: 0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.5s;
+        box-shadow: 0 0 10px 30px white;
+      }
+      
+      .switchFiltros:active:after {
+        box-shadow: 0 0 0 0 white;
+        position: absolute;
+        border-radius: 20px 0px 0px 20px;
+        left: 0;
+        top:0;
+        opacity: 1;
+        transition: 0s;
+      }
+      
+      .switchFiltros:active {
+        top: calc(50vh - 2px);
+      }
+
+    .switchFiltros:hover
+    {
+        opacity:1;
+    }
+}
+
+/*--------------------------------------------------------------------------- Escritorio -------------------*/
+@media only screen and (min-width: 1200px) 
+{
+
+} 
