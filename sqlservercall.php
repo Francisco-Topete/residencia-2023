@@ -17,4 +17,3 @@
     
 
     $conn = sqlsrv_connect($serverName, $connectionInfo);  //Se ejecuta la conexion a la base de datos.
-    echo 'aaa';

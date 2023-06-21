@@ -48,7 +48,7 @@
     background: #fff;
     border-radius: 5px;
     padding: 1em 2em;
-    height: 50%;
+    height: max-content;
   }
   
   .modal__close {
@@ -95,61 +95,102 @@
   
   /* Other
    * =============================== */
-  body {
+  body 
+  {
     text-align: center;
   }
   
   .btn {
     cursor: pointer;
-    background: #27ae60;
+    background: black;
     display: inline-block;
     padding: .5em 1em;
     color: #fff;
     border-radius: 3px;
   }
-  
-  .btn:hover,
-  .btn:focus {
-    background: #2ecc71;
-  }
-  
-  .btn:active {
-    background: #27ae60;
-    box-shadow: 0 1px 2px rgba(0,0,0, .2) inset;
-  }
-  
-  .btn--blue {
-    background: #2980b9;
-  }
-  
-  .btn--blue:hover,
-  .btn--blue:focus {
-    background: #3498db;
-  }
-  
-  .btn--blue:active {
-    background: #2980b9;
-  }
 
-  .btn--red {
-    background: #ff5252;
-  }
-  
-  .btn--red:hover,
-  .btn--red:focus {
-    background: #ff7b7b
-  }
-  
-  .btn--red:active {
-    background: #ff5252;
-  }
-  
-  .select-box-rol{
+  .select-box-rol
+  {
     border: none;
     appearance: auto;
-    width: 50%;
+    width: auto;
     color: #030303;
     border-radius: 5px;
-}
+    padding: 3px;
+  }
 
+  .password-field-hide
+  {
+    display: none;
+    opacity: 0;
+  }
+
+  .password-field-show
+  {
+    display: block;
+    opacity: 1;
+  }
+
+  .form-flex-container
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .ui-form
+  {
+    padding: 20px 10px 30px 0px;
+    height:100%;
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .btn-password
+  {
+    display: flex;
+    margin-top: 30px;
+    padding: 4px;
+  }
+
+  .btn-submit
+  {
+    display: flex;
+    margin-top: 30px;
+    padding: 4px;
+    margin-left: auto;
+  }
+
+
+  .input-modal
+  {
+    padding: 3px;
+  }
+
+  .field
+  {
+    margin-top:5px;
+  }
+
+  .label-field
+  {
+    text-align: right;
+    display: inline-block;
+    width: 80px;
+    margin-right: 5px;
+  }
+
+  .label-field-password
+  {
+    text-align: right;
+    display: inline-block;
+    width: 160px;
+    margin-right: 5px;
+  }
+
+  .flex
+  {
+    display: flex;
+    align-items: center;
+  }
 

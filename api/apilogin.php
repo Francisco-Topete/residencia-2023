@@ -1,12 +1,8 @@
 <?php
-$json = file_get_contents('php://input');
+error_reporting(0);
 include '../sqlservercall.php';
 
-/*$json = '{
-    "telefono": "(664) 196-2477",
-    "contrasena": "accesodirecto"
-}';*/
-
+$json = file_get_contents('php://input');
 $data = json_decode($json,true);
 
 /*echo $data->telefono;

@@ -81,19 +81,46 @@ body
 .contenedor .div-listado .div-empleados 
 {
     width: 100%;
-    height: 100%;
+    height: 88.5%;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    align-content:start;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     grid-template-rows: auto;
+    row-gap: 0px;
     background-color: beige;
+    border-width: 1px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-left: 1px;
+    border-style: solid;
+    border-color: black;
 }
 
 .grid-item
 {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    height: auto;
     border-width: 1px;
+    padding-left: 10px;
     border-top: 0px;
+    border-left: 0px;
     border-style: solid;
     border-color: black;
+}
+
+.header
+{
+    padding: 0px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--blanco);
+    background-color:#b17c7d;
 }
 
 .div-header
@@ -140,12 +167,39 @@ hr
 
 .btn-editar 
 {
+    height: 30px;
+    width: 30px;
     background-color: green;
+}
+
+.btn-editar:focus,
+.btn-editar:hover
+{
+    background: gold;
+}
+
+.btn-editar:active 
+{
+    background: lightgreen;
 }
 
 .btn-eliminar 
 {
-    background-color: red;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    background: #ff5252;
+}
+
+.btn-eliminar:focus,
+.btn-eliminar:hover
+{
+    background: #ff7b7b
+}
+
+.btn-eliminar:active 
+{
+    background: #ff5252;
 }
 
 /* ESTILOS FORMULARIO */

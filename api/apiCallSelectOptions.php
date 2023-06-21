@@ -80,5 +80,6 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
-echo json_encode($arrayData);
+$jsonArray = json_encode($arrayData, JSON_INVALID_UTF8_IGNORE);
+echo $jsonArray;
 ?>

@@ -12,6 +12,7 @@ echo "<div class=\"logo\">";
 echo "<h1>Mapa</h1>";
 echo "</div>";
 echo "<div class=\"menu-items\">";
+echo "<li><a href=\"../home\">Ver Mapa</a></li>";
 echo "<li><a href=\"admin/rescatistas\">Administrar rescatistas/moderadores</a></li>";
 echo "<li><a href=\"admin/nodos\">Administrar nodos</a></li>";
 echo "<li><a href=\"admin/cerrarsesion\">Cerrar sesion</a></li>";

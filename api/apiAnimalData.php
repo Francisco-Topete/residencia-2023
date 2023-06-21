@@ -51,5 +51,5 @@ foreach($params as $id)
     $numAnimal++;
 }
 
-echo json_encode($arrayData);
+echo json_encode($arrayData, JSON_INVALID_UTF8_IGNORE);
 ?>

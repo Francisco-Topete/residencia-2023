@@ -28,68 +28,130 @@
 
   <div class="contenedor">
     <div class="div-listado">
-        <div class="div-header">
-          <h2>Usuarios</h2>
-          <label class="btn btn-anadir" for="modal-1">+</label>
-        </div>       
-        <div class="div-empleados">
-          <div class="grid-item userphone">1</div>
-          <div class="grid-item username">2</div>
-          <div class="grid-item userlname">3</div>
-          <div class="grid-item usertype">4</div>
-        </div>
+      <div class="div-header">
+        <h2>Usuarios</h2>
+        <label class="btn btn-anadir" id="labelcrear" for="modal-create">+</label>
+      </div>       
+      <div class="div-empleados" id="gridUsers">
+        <div class="grid-item header">Telefono</div>
+        <div class="grid-item header">Nombre</div>
+        <div class="grid-item header">Apellido</div>
+        <div class="grid-item header">Tipo de Usuario</div>
+        <div class="grid-item header">Acciones</div>
+      </div>
+      <script> retirarUsuarios(); </script>
     </div>
   </div>  
 
-  <input class="modal-state" id="modal-1" type="checkbox" />
+  <input class="modal-state" id="modal-create" name="modal-create" type="checkbox" />
   <div class="modal">
-    <label class="modal__bg" for="modal-1"></label>
+    <label class="modal__bg" for="modal-create"></label>
     <div class="modal__inner">
-      <label class="modal__close" for="modal-1"></label>
-
-      <div class="ui form">
-        <form id="create_user" style="margin-bottom: 30px">
-          <div class="required field">
-            <label>Telefono</label>
-            <input id="name" type="text" name="name" placeholder="Name" />
+      <label class="modal__close" for="modal-create"></label>
+      <div class="ui-form">
+        <form id="crear_user" action="../api/apiCreateUser.php" method="post" onsubmit="return false;">
+          <div class="form-flex-container">
+            <div class="required field">
+              <label class="label-field">Rol</label>
+              <select id='crear-select-rol-usuario' name='tipo_usuario' class="select-box-rol" required>
+                <option value="1">Administrador</option>
+                <option value="2">Coordinador</option>
+                <option value="3">Rescatista</option>
+              </select>        
+            </div>
+            <div class="required field">
+              <label class="label-field">Telefono</label>
+              <input class="input-modal" id="crear-telefono-usuario" type="text" name="telefono" placeholder="(xxx) xxx-xxxx" required></input>
+            </div>        
+            <div class="required field">
+              <label class="label-field">Nombre</label>
+              <input class="input-modal" id="crear-nombre-usuario" type="text" name="nombre" placeholder="Nombre" required></input>
+            </div>
+            <div class="required field">
+              <label class="label-field">Apellido</label>
+              <input class="input-modal" id="crear-apellido-usuario" type="text" name="apellido" placeholder="Apellido" required></input>
+            </div>               
+            <div class="password-field-hide password-field-show field">
+              <label class="label-field">Contrasena</label>
+              <input class="input-modal" id="crear-password-usuario" type="password" name="contrasena" placeholder="********" required></input>
+            </div>           
           </div>
-          <div class="required field">
-            <label>Contrasena</label>
-            <input id="birthday" type="password" name="birthday" placeholder="********"></input>
+          <div style="display: flex;">
+            <input type="submit" onClick="verificarTelefono()" value="Crear" id="create" class="btn-submit"></input>
           </div>
-          <div class="required field">
-            <label>Nombre</label>
-            <input id="phone" type="text" name="phone" placeholder="(664) 123-4567"></input>
-          </div>
-          <div class="field">
-            <label>Apellido</label>
-            <input id="email" type="email"  name="email" placeholder="joe@schmoe.com">
-          </div>
-          <div class="required field">
-            <label>Rol</label>
-            <select class="select-box-rol">
-              <option value="">Elige una opcion</option>
-              <option value="">Rescatista</option>
-              <option value="">Moderador</option>
-            </select>
-          </div>
-        </form>
-
-        <div style="display: flex; justify-content: center">
-          <a id="back" class="ui basic button" href="index.html">Back</a>
-          <button id="create" class="ui submit button" onClick="apiCreate()">
-            Create
-          </button>
-        </div>
+        </form> 
       </div>
     </div>
   </div>
 
+  <input class="modal-state" id="modal-modify" name="modal-modify" type="checkbox" />
+  <div class="modal">
+    <label class="modal__bg" for="modal-modify"></label>
+    <div class="modal__inner">
+      <label class="modal__close" for="modal-modify"></label>
+      <div class="ui-form">
+        <form id="modificar_user" action="../api/apiModifyUser.php" method="post" onsubmit="return false;">
+          <div class="form-flex-container">
+            <div class="required field">
+              <label class="label-field">Rol</label>
+              <select id='select-rol-usuario' name='tipo_usuario' class="select-box-rol" required>
+                <option value="1">Administrador</option>
+                <option value="2">Coordinador</option>
+                <option value="3">Rescatista</option>
+              </select>        
+            </div>
+            <div class="required field">
+              <label class="label-field">Telefono</label>
+              <input class="input-modal" id="telefono-usuario" type="text" name="telefono" placeholder="(xxx) xxx-xxxx" required></input>
+              <input type="hidden" id="telefono-old" name="telefono_old" value="" required></input>
+            </div>        
+            <div class="required field">
+              <label class="label-field">Nombre</label>
+              <input class="input-modal" id="nombre-usuario" type="text" name="nombre" placeholder="Nombre" required></input>
+            </div>
+            <div class="required field">
+              <label class="label-field">Apellido</label>
+              <input class="input-modal" id="apellido-usuario" type="text" name="apellido" placeholder="Apellido" required></input>
+            </div>               
+            <div id="password-old-div" class="password-field-hide field" style="margin-top: 20px;">
+              <label class="label-field-password">Contrasena actual</label>
+              <input class="input-modal" id="password-usuario-old" type="password" name="contrasena_old" placeholder="********"></input>
+            </div>
+            <div id="password-new-div" class="password-field-hide field">
+              <label class="label-field-password">Contrasena nueva</label>
+              <input class="input-modal" id="password-usuario-new" type="password" name="contrasena_new" placeholder="********"></input>
+            </div>
+          </div>
+          <div style="display: flex;">
+            <button type="button" class="btn-password" onClick="cambiarContrasena()">Cambiar contraseña</button> 
+            <input type="submit" onClick="verificarContrasena()" value="Modificar" id="modify" class="btn-submit"></input>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div>
 
-  
+  <input class="modal-state" id="modal-delete" name="modal-delete" type="checkbox" />
+  <div class="modal">
+    <label class="modal__bg" for="modal-delete"></label>
+    <div class="modal__inner">
+      <label class="modal__close" for="modal-delete"></label>
+      <div class="ui-form">
+        <form id="crear_user" action="../api/apiDeleteUser.php" method="post">
+          <div class="form-flex-container">           
+            <div class="required field">
+              <label class="label-field">Seguro que quieres borrar a este usuario?</label>  
+              <input type="hidden" id="delete-telefono" name="delete-telefono" value="" required></input>           
+            </div>                                     
+          </div>
+          <div style="display: flex;">
+            <input type="submit" onClick="verificarTelefono()" value="Eliminar" id="delete" class="btn-submit"></input>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div>
 
-
-  
-  <!-- <script>apiCreate()</script> -->
+<script> setModalListener(); </script>
 </body>
 </html>

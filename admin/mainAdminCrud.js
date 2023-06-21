@@ -1,216 +1,387 @@
-class Data {
-    constructor() {
-      var parse_list = JSON.parse(localStorage.getItem("list_users"));
-      this.list_users = parse_list ? parse_list : [];
-    }
-    createUser(user) {
-      this.list_users.push(user);
-    }
-    deleteUser(id_user) {
-      const removeItem = this.list_users
-        .map(item => item.id_user)
-        .indexOf(id_user);
-      this.list_users.splice(removeItem, 1);
-    }
-    getUser(id_user) {
-      const queryUser = this.list_users.filter(item => item.id_user === id_user);
-      return queryUser[0];
-    }
-    getAllUser() {
-      return this.list_users;
-    }
-    updateUser(user) {
-      const old_user_info = this.getUser(user.id_user);
-      for (var props in old_user_info) {
-        old_user_info[props] = user[props];
-      }
-    }
-    writeLocal() {
-      localStorage.setItem("list_users", JSON.stringify(this.list_users));
-    }
-  }
-  
-  ////////////////////////////////////
-  
-  var data = new Data();
-  
-  function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
-  function validatePhone(phone) {
-    var re = /(09|01[2|6|8|9])+([0-9]{8})\b/g;
-    return re.test(phone);
-  }
-  function validateBirthday(birthday) {
-    var re = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
-    return re.test(birthday);
-  }
-  
-  function makeID() {
-    var text_id = "";
-    var character =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < 10; i++) {
-      text_id += character.charAt(Math.floor(Math.random() * character.length));
-    }
-    return text_id;
-  }
-  
-  // render all data to index.html
-  function apiRenderAll() {
-    const all_users = data.getAllUser(); // get all data from localStorage
-    // add rows to table
-    for (let i = 0; i < all_users.length; i++) {
-      var tr = document.createElement("tr");
-      tr.onclick = () =>
-        apiRedirect(
-          all_users[i].id_user,
-          `detail.html?id=${all_users[i].id_user}`
-        );
-  
-      // createElement of row
-      var td_num = document.createElement("td");
-      var td_name = document.createElement("td");
-      var td_birthday = document.createElement("td");
-      var td_action = document.createElement("td");
-      var button_del = document.createElement("button");
-      var button_up = document.createElement("button");
-  
-      // createTextNode of element
-      var numText = document.createTextNode(i + 1);
-      var nameText = document.createTextNode(all_users[i].name);
-      var birthdayText = document.createTextNode(all_users[i].birthday);
-      var button_up_text = document.createTextNode("Update");
-      var button_del_text = document.createTextNode("Delete");
-  
-      button_up.id = "update";
-      button_del.id = "delete";
-  
-      // add event to btn
-      button_up.onclick = () => apiRedirect(all_users[i].id_user, "edit.html");
-      button_del.onclick = () => apiDelete(all_users[i].id_user);
-  
-      // append data to element
-      td_num.appendChild(numText);
-      td_name.appendChild(nameText);
-      td_birthday.appendChild(birthdayText);
-      td_action.appendChild(button_up);
-      td_action.appendChild(button_del);
-      button_up.appendChild(button_up_text);
-      button_del.appendChild(button_del_text);
-  
-      tr.appendChild(td_num);
-      tr.appendChild(td_name);
-      tr.appendChild(td_birthday);
-      tr.appendChild(td_action);
-  
-      document.getElementById("myID").appendChild(tr);
-    }
-  }
-  
-  // create & add a new user to localStorage
-  function apiCreate() {
-    const inp_name = document.getElementById("name").value;
-    const inp_birthday = document.getElementById("birthday").value;
-    const inp_country = document.getElementById("country").value;
-    const inp_email = document.getElementById("email").value;
-    const inp_phone = document.getElementById("phone").value;
-    if ((inp_name && inp_phone && inp_birthday) !== "") {
-      if (
-        validateEmail(inp_email) &&
-        validatePhone(inp_phone) &&
-        validateBirthday(inp_birthday)
-      ) {
-        const user = {
-          id_user: makeID(),
-          name: inp_name,
-          birthday: inp_birthday,
-          country: inp_country,
-          email: inp_email,
-          phone: inp_phone
+var oldIdModify = "";
+var modifyPassword = false;
+var selectedRow = 0;
+
+function retirarUsuarios()
+{
+    fetch('../api/apiUserData.php')
+        .then((response) => 
+        {
+            if(!response.ok){ 
+                throw new Error("No!");
+            }
+
+            return response.json(); 
+        })
+        .then((data) => 
+        {
+            let arrayData = [];
+            let arrayKeys = [], arrayInnerKeys = [];
+
+            arrayKeys = Object.keys(data);
+            arrayKeys.forEach(key => 
+            {
+                arrayData[key] = (data[key] == null ? "" : data[key]);
+            });
+
+            arrayKeys = Object.keys(arrayData['Usuario']);
+            arrayKeys.forEach(key => 
+            {
+                arrayData['Usuario'][key] = (data['Usuario'][key] == null ? "" : data['Usuario'][key]);
+
+                arrayInnerKeys = Object.keys(arrayData['Usuario'][key]);
+                arrayInnerKeys.forEach(innerkey => 
+                {
+                    arrayData['Usuario'][key][innerkey] = (data['Usuario'][key][innerkey] == null ? "" : data['Usuario'][key][innerkey]);
+                });              
+            });
+           
+            let gridItem1, gridItem2, gridItem3, gridItem4, gridItem5, btnModify, btnDelete,
+             idRow = 0;
+    
+            arrayData['Usuario'].forEach(element => 
+            {
+                gridItem1 = document.createElement("div");
+                gridItem1.className = "grid-item userphone";
+                gridItem1.id = "telefono-usuario-" + idRow;
+                gridItem1.innerHTML += element['Telefono'];
+                document.getElementById('gridUsers').appendChild(gridItem1);
+
+                gridItem2 = document.createElement("div");
+                gridItem2.className = "grid-item username";
+                gridItem2.innerHTML += element['Nombre'];
+                document.getElementById('gridUsers').appendChild(gridItem2);
+
+                gridItem3 = document.createElement("div");
+                gridItem3.className = "grid-item userlname";
+                gridItem3.innerHTML += element['Apellido'];
+                document.getElementById('gridUsers').appendChild(gridItem3);
+
+                gridItem4 = document.createElement("div");
+                gridItem4.className = "grid-item usertype";
+                gridItem4.innerHTML += element['Tipo_Usuario'];
+                document.getElementById('gridUsers').appendChild(gridItem4);
+                
+                gridItem5 = document.createElement("div");
+                gridItem5.className = "grid-item";
+                gridItem5.id = "fila-" + idRow;
+                gridItem5.setAttribute("style", "justify-content: center;");
+                document.getElementById('gridUsers').appendChild(gridItem5);
+
+                btnModify = document.createElement("label");
+                btnModify.className = "btn btn-editar";
+                btnModify.innerHTML += "*";
+                btnModify.id = 'btn-' + idRow;
+                btnModify.htmlFor = 'modal-modify';
+                document.getElementById('fila-' + idRow).appendChild(btnModify);
+
+                function delegarClick(id)
+                {
+                    return function(){
+                        clickear(id);
+                    }
+                }
+
+                function clickear(id)
+                {
+                    selectedRow = id;
+                    console.log(selectedRow);
+                }
+
+                document.getElementById(btnModify.id).addEventListener("click", delegarClick(idRow), false); 
+
+                btnDelete = document.createElement("label");
+                btnDelete.className = "btn btn-eliminar";
+                btnDelete.innerHTML += "-";
+                btnDelete.id = 'btndel-' + idRow;
+                btnDelete.htmlFor = 'modal-delete';
+                document.getElementById('fila-' + idRow).appendChild(btnDelete);
+
+                function delegarClickDel(id)
+                {
+                    return function(){
+                        clickearDel(id);
+                    }
+                }
+
+                function clickearDel(id)
+                {
+                    selectedRow = id;
+                    console.log(selectedRow);
+                }
+
+                document.getElementById(btnDelete.id).addEventListener("click", delegarClickDel(idRow), false);
+
+                idRow += 1;
+            });
+        })
+}
+
+async function getUserInfoDynamic()
+{
+    let elemento = 'telefono-usuario-'.concat(selectedRow);
+    console.log(elemento);
+
+    var usuario = {
+        telefono: document.getElementById(elemento).textContent,
         };
-        data.createUser(user);
-        data.writeLocal();
-        // window.history.back();
-        apiRedirect(user.id, "index.html");
-      } else {
-        alert("the input was not valid");
-        return false;
-      }
-    } else alert("Name, Birthday and Phone must be filled out");
-  }
-  
-  // delete a user
-  function apiDelete(id_user) {
-    event.stopPropagation();
-    var confirmDel = confirm("Are you sure?");
-    if (confirmDel) {
-      data.deleteUser(id_user);
-      data.writeLocal();
-      location.reload();
+
+    const options = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario),
+        };
+
+    return fetch('../api/apiSingleUserData.php', options)
+        .then((response)=>
+        {
+            if(!response.ok){ 
+                throw new Error("No!");
+            }
+            return response.json();
+        })
+        .then((data)=>
+        {
+            return data
+        });
+}
+
+async function setModalListener()
+{
+    var checkbox = document.querySelector("input[name=modal-modify]");
+    var checkboxdel = document.querySelector("input[name=modal-delete]");
+
+    modifyPassword = false;
+    checkbox.addEventListener('change', async function() {
+        if (this.checked) 
+        {
+            var data = await getUserInfoDynamic();
+            document.getElementById("telefono-usuario").value = data[0]['Telefono'];
+            oldIdModify = data[0]['Telefono'];
+            document.getElementById("telefono-old").value = oldIdModify;
+            document.getElementById("nombre-usuario").value = data[0]['Nombre'];
+            document.getElementById("apellido-usuario").value = data[0]['Apellido'];
+            console.log(data[0]['Tipo_Usuario']);
+            
+            switch(data[0]['Tipo_Usuario']) 
+            {
+                case 'Administrador':
+                    document.getElementById("select-rol-usuario").value = 1;
+                break;
+                case 'Coordinador':
+                    document.getElementById("select-rol-usuario").value = 2;
+                break;
+                case 'Rescatista':
+                    document.getElementById("select-rol-usuario").value = 3;
+                break;
+            }           
+        } 
+      });
+
+    checkboxdel.addEventListener('change', async function() {
+    if (this.checked) 
+    {
+        var data = await getUserInfoDynamic();
+        document.getElementById("delete-telefono").value = data[0]['Telefono'];       
+        console.log(document.getElementById("delete-telefono").value);
+    } 
+    });
+}
+
+function cambiarContrasena()
+{
+    if(document.getElementById("password-old-div").classList.contains("password-field-show") ||
+       document.getElementById("password-new-div").classList.contains("password-field-show"))
+    {
+        document.getElementById("password-old-div").classList.remove("password-field-show");
+        document.getElementById("password-usuario-old").value='';
+        document.getElementById("password-usuario-old").required = false;
+        document.getElementById("password-new-div").classList.remove("password-field-show");
+        document.getElementById("password-usuario-new").value='';
+        document.getElementById("password-usuario-new").required = false;
+        modifyPassword = false;   
+        oldIdModify = "";
     }
-  }
-  
-  /* store selected user in localStorage
-   before rediect page */
-  function apiRedirect(id_user, page) {
-    event.stopPropagation();
-    const get_cur_user = data.getUser(id_user);
-    localStorage.setItem("cur_user", JSON.stringify(get_cur_user));
-    window.location.href = page;
-  }
-  
-  // display selected user's info in edit page
-  function apiShowUser() {
-    const parse_cur_user = JSON.parse(localStorage.getItem("cur_user"));
-    const cur_user = parse_cur_user ? parse_cur_user : {};
-    document.getElementById("name").value = cur_user["name"];
-    document.getElementById("birthday").value = cur_user["birthday"];
-    document.getElementById("country").value = cur_user["country"];
-    document.getElementById("email").value = cur_user["email"];
-    document.getElementById("phone").value = cur_user["phone"];
-  }
-  
-  function apiUpdate() {
-    const cur_user = JSON.parse(localStorage.getItem("cur_user"));
-    const user = {
-      id_user: cur_user["id_user"],
-      name: document.getElementById("name").value,
-      birthday: document.getElementById("birthday").value,
-      country: document.getElementById("country").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value
-    };
-    if ((user.name && user.birthday && user.phone) !== "") {
-      if (
-        validateEmail(user.email) &&
-        validatePhone(user.phone) &&
-        validateBirthday(user.birthday)
-      ) {
-        data.updateUser(user);
-        data.writeLocal();
-        localStorage.setItem("cur_user", JSON.stringify(user)); // update cur_user's info
-        // window.history.back();
-        apiRedirect(user.id, "index.html");
-      } else {
-        alert("the input was not valid");
-        return false;
-      }
-    } else alert("Name, Birthday and Phone must be filled out");
-  }
-  
-  // render user'info in detail.html
-  function apiRenderUserInfo() {
-    const parse_cur_user = JSON.parse(localStorage.getItem("cur_user"));
-    const cur_user = parse_cur_user ? parse_cur_user : {};
-    document.getElementById("name").innerText = cur_user["name"];
-    document.getElementById("birthday").innerText = cur_user["birthday"];
-    document.getElementById("country").innerText = cur_user["country"];
-    document.getElementById("email").innerText = cur_user["email"];
-    document.getElementById("phone").innerText = cur_user["phone"];
-    document.getElementById("update").onclick = () => {
-      apiRedirect(cur_user["id_user"], "edit.html");
-    };
-  }
-  
+    else
+    {
+        document.getElementById("password-old-div").classList.add("password-field-show");
+        document.getElementById("password-usuario-old").required = true;
+        document.getElementById("password-new-div").classList.add("password-field-show");
+        document.getElementById("password-usuario-new").required = true;
+        modifyPassword = true;
+        oldIdModify = document.getElementById("telefono-old").value;
+    }
+}
+
+async function verificarContrasena()
+{
+    if(modifyPassword)
+    {
+        let confirmacion = await apiVerificarContrasena();
+
+        if(confirmacion == true)
+        {
+            document.getElementById("modificar_user").submit();
+        }
+    }
+    else
+    {
+        document.getElementById("modificar_user").submit();
+    }
+}
+
+async function apiVerificarContrasena()
+{
+    var usuario = {
+        telefono: document.getElementById('telefono-usuario').value,
+        contrasena: document.getElementById('password-usuario-old').value,
+        };
+
+    let confirmacion=false;
+
+    const options = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario),
+        };
+
+    return fetch('../api/apilogin.php', options)
+        .then((response)=>
+        {
+            if(!response.ok){ 
+                throw new Error("No!");
+            }
+
+            return response.json();
+        })
+        .then((data)=>
+        {
+            if(data['contrasena'] == "Correcta")
+            {
+                confirmacion = true;
+            }
+            else
+            {
+                if(document.getElementById('password-usuario-old').value != "")
+                {
+                    confirmacion = false;
+                    alert("Contraseña incorrecta");
+                }
+            }
+
+            return confirmacion;
+        });
+}
+
+async function verificarTelefono()
+{ 
+    let confirmacion = await apiVerificarTelefono();
+    
+    if(confirmacion == true)
+    {
+        document.getElementById("crear_user").submit();
+    }
+}
+
+async function apiVerificarTelefono()
+{
+    var usuario = {
+        telefono: document.getElementById('crear-telefono-usuario').value,
+        contrasena: document.getElementById('crear-password-usuario').value,
+        };
+
+    let confirmacion=false;
+
+    const options = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario),
+        };
+
+    return fetch('../api/apilogin.php', options)
+        .then((response)=>
+        {
+            if(!response.ok){ 
+                throw new Error("No!");
+            }
+
+            return response.json();
+        })
+        .then((data)=>
+        {
+            console.log(data);
+            if(data['telefono'] != "Correcto")
+            {       
+                console.log("confirmado");
+                confirmacion = true;
+            }
+            else
+            {
+                confirmacion = false;
+                alert("Ese usuario ya existe.");
+            }
+
+            return confirmacion;
+        });
+}
+
+async function modifyUser()
+{
+    if(modifyPassword == true)
+    {
+        var usuario = {
+            telefono: document.getElementById('telefono-usuario').value,
+            telefono_old: oldIdModify,
+            nombre: document.getElementById('nombre-usuario').value,
+            apellido: document.getElementById('apellido-usuario').value,
+            tipo_usuario: document.getElementById('select-rol-usuario').value,
+            contrasena_old: document.getElementById('password-usuario-old').value,
+            contrasena_new: document.getElementById('password-usuario-new').value,
+            };
+    }
+    else
+    {
+        var usuario = {
+            telefono: document.getElementById('telefono-usuario').value,
+            telefono_old: oldIdModify,
+            nombre: document.getElementById('nombre-usuario').value,
+            apellido: document.getElementById('apellido-usuario').value,
+            tipo_usuario: document.getElementById('select-rol-usuario').value,
+            };
+    }
+
+    const options = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario),
+        };
+
+    return fetch('../api/apiModifyUser.php', options)
+        .then((response)=>
+        {
+            if(!response.ok){ 
+                throw new Error("No!");
+            }
+            return response.json();
+        })
+        .then((data)=>
+        {
+            return data
+        });
+}
+
+async function apiModificar()
+{
+    var data = await modifyUser();
+    location.reload(true);
+}
+
+
