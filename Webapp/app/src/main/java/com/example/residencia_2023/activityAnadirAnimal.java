@@ -163,7 +163,7 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             String jsonStringAnimal = jsonAnimal.toString();
                             Log.d("JSON",jsonStringAnimal);
 
-                            endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
+                            endpoint = new URL("https://www.censoanimalesbc.com/api/" +
                                     "apiMap.php");
                             HttpURLConnection conn =
                                     (HttpURLConnection) endpoint.openConnection();
@@ -231,7 +231,7 @@ public class activityAnadirAnimal extends AppCompatActivity {
 
                 try
                 {
-                    endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
+                    endpoint = new URL("https://www.censoanimalesbc.com/api/" +
                             "apiCallSelectOptions.php");
                     HttpURLConnection conn =
                             (HttpURLConnection) endpoint.openConnection();

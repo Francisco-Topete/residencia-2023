@@ -215,7 +215,7 @@ public class fragmentRescatistaHomeMain extends Fragment{
 
                 try
                 {
-                    endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
+                    endpoint = new URL("https://www.censoanimalesbc.com/api/" +
                             "apiAnimalData.php");
                     HttpURLConnection conn =
                             (HttpURLConnection) endpoint.openConnection();
@@ -285,7 +285,7 @@ public class fragmentRescatistaHomeMain extends Fragment{
 
                 try
                 {
-                    endpoint = new URL("http://ec2-18-216-202-90.us-east-2.compute.amazonaws.com/api/" +
+                    endpoint = new URL("https://www.censoanimalesbc.com/api/" +
                             "apiAnimalData.php");
                     HttpURLConnection conn =
                             (HttpURLConnection) endpoint.openConnection();
