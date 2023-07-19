@@ -3,7 +3,7 @@
 //Si el servidor llegase a cambiar cualquier cosa, aqui se debe de reflejar esos cambios inmediatamente, o
 //la aplicacion no se conectara a la tabla.
 
-    $serverName = "164.92.90.165,1433"; //Este es el nombre y direccion IP del servidor en si.                                                      
+    $serverName = "164.92.90.165,4700"; //Este es el nombre y direccion IP del servidor en si.                                                      
     $uid = "sa"; //Este es el nombre de usuario del administrador que maneja la tabla del proyecto.
     $pwd = "b45!0f44P12D"; //Esta es su respectiva contraseña.
     $tabla = "Sistema_Censado_Animales";
