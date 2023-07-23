@@ -144,8 +144,6 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             byte[] b64 = Base64.encode(b,Base64.DEFAULT);
                             String animalFoto = new String(b64, StandardCharsets.UTF_8);
 
-
-
                             JSONObject jsonAnimal = new JSONObject();
                             jsonAnimal.put("fotografia",animalFoto);
                             jsonAnimal.put("especie",animalEspecie);
@@ -179,6 +177,21 @@ public class activityAnadirAnimal extends AppCompatActivity {
                             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
                             wr.write(jsonStringAnimal);
                             wr.flush();
+
+                            try(BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(conn.getInputStream()))) {
+                                StringBuilder response = new StringBuilder();
+                                String responseLine = null;
+
+                                while ((responseLine = br.readLine()) != null) {
+                                    response.append(responseLine.trim());
+                                }
+
+
+                                String respuesta = response.toString();
+                                Log.d("Respuesta ", respuesta);
+                            }
+
                             conn.disconnect();
 
                             Handler handler=new Handler(Looper.getMainLooper());
