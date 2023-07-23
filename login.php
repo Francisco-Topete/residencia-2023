@@ -4,7 +4,6 @@
 
     session_start(); //Abrimos sesion de PHP, para almacenar datos necesarios del 
                     //usuario en el navegador web en caso de que el inicio de sesion se verifique.
-
     include 'sqlservercall.php'; //Llamamos este archivo PHP para abrir la conexion a la base de datos.
                                  //Cualquier cambio a la base de datos debe verse reflejado en ese archivo.
 
@@ -18,11 +17,10 @@
         @Contrasena_Usuario = ?;",$params); //Se hace una consulta al servidor de SQL por medio de un
                                             //procedimiento, tomando como variables los parametros asignados en base al formulario.
 
-        if ($query=== false) //Si no llegara a encontrarse nada...
+        if ($query === false) //Si no llegara a encontrarse nada...
         { 
-
+            die( print_r( sqlsrv_errors(), true));
             echo '<p class="error">Estas mal!</p>'; //Error
-
         } 
         else //Si se llega a encontrar algo que coincida
         { 
@@ -32,7 +30,11 @@
                                                                    //un arreglo.
             if ($row['Contrasena_Usuario']) //Si en lo que recorremos el arreglo llegamos a la columna de la contrasena...
             { 
-                $_SESSION['user_id'] = $query['Telefono_Usuario']; //Tomaremos el telefono como dato de la sesion.
+                $_SESSION['user-id'] = $row['Telefono_Usuario']; //Tomaremos los datos del usuario para un uso futuro en la sesion de la sesion.
+                $_SESSION['user-name'] = $row['Nombre_Usuario']; 
+                $_SESSION['user-type'] = $row['Nombre_Tipo_Usuario']; 
+                $_SESSION['user-login'] = true;
+
                 header('Location: '.'home'); //Entraremos a la plataforma web con una redireccion...
                 die(); //y mataremos este PHP.
 
@@ -43,4 +45,8 @@
             }
         }
     }   
+    else
+    {
+        echo "???";
+    }
 ?>

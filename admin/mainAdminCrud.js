@@ -295,7 +295,6 @@ async function apiVerificarTelefono()
         };
 
     let confirmacion=false;
-
     const options = {
         method: 'POST',
         headers: {

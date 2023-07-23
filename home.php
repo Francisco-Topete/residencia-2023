@@ -34,6 +34,7 @@
             </div>
         </div>
         <script>
+            var userType = <?php echo "'" . $_SESSION['user-type'] . "'";?>;
             const loader = document.querySelector("#loading");
             const loaderBackground = document.querySelector("#loadingBackground");
             generateMap();							     

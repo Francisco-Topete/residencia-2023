@@ -2,7 +2,7 @@
 //Este PHP unicamente se dedica a abrir la conexion a la base de datos de la plataforma web, y a nada mas.
 //Si el servidor llegase a cambiar cualquier cosa, aqui se debe de reflejar esos cambios inmediatamente, o
 //la aplicacion no se conectara a la tabla.
-
+    error_reporting(0);
     $serverName = "164.92.90.165,4700"; //Este es el nombre y direccion IP del servidor en si.                                                      
     $uid = "sa"; //Este es el nombre de usuario del administrador que maneja la tabla del proyecto.
     $pwd = "b45!0f44P12D"; //Esta es su respectiva contraseña.
@@ -15,5 +15,5 @@
     $connectionInfo = array("UID" => $uid, "PWD" => $pwd, "Database"=> $tabla, "Encrypt"=> $habilitarSeguridad,
                          "TrustServerCertificate" => $habilitarSeguridad);  
     
-
     $conn = sqlsrv_connect($serverName, $connectionInfo);  //Se ejecuta la conexion a la base de datos.
+?>
