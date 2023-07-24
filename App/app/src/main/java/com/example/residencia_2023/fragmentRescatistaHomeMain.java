@@ -19,6 +19,8 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -160,15 +162,28 @@ public class fragmentRescatistaHomeMain extends Fragment{
     public void busquedaTexto(View view)
     {
         textboxBusqueda = (EditText) view.findViewById(R.id.textboxBusquedaFecha);
+
+        textboxBusqueda.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER))
+                {
+                    actualizarRecyclerView(textboxBusqueda.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+    });
+
         textboxBusqueda.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void afterTextChanged(Editable s)
             {
-                if(!textboxBusqueda.isFocused())
-                {
-                    actualizarRecyclerView(s.toString());
-                }
+
             }
 
             @Override
@@ -353,9 +368,10 @@ public class fragmentRescatistaHomeMain extends Fragment{
             for (int x = 0; x < arrayData.length(); x++)
             {
                 JSONObject jsonAnimal = arrayData.getJSONObject(x);
-
+                Log.d("S","sdf");
                 if(jsonAnimal.getString("Fecha").contains(cambios))
                 {
+                    Log.d("A","sdf");
                     listaAnimales.add(new modelrecyclerViewAnimales(jsonAnimal.getString("Foto"), jsonAnimal.getString("Fecha"), jsonAnimal.getString("Hora")));
                 }
             }
