@@ -3,10 +3,11 @@
 <html lang="es">
 <head>
 
-<!-- mapboxs-->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-<!--mapboxs-->
+    <!-- Librerias de Mapbox-->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- Librerias de Mapbox-->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,20 +19,26 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/estilosAdmin.css">
     <link rel="stylesheet" href="../css/burgerMenu.css">
+    
+    <!-- Javascript que se encarga de todas las funciones relacionadas con el CRUD (ABC - Altas, Bajas, Consultas y Modificaciones)-->
     <script src="mainAdminCrud.js"></script>
 </head>
 
 <body>
+  <!-- PHP de la barra de navegación + el manager de sesiones-->
   <?php
   include '../navigation.php';
   ?>
 
+  <!-- Contenedor principal del CRUD-->
   <div class="contenedor">
     <div class="div-listado">
       <div class="div-header">
         <h2>Usuarios</h2>
+        <!-- Boton para las altas de los usuarios -->
         <label class="btn btn-anadir" id="labelcrear" for="modal-create">+</label>
       </div>       
+      <!-- Headers para la tabla del CRUD -->
       <div class="div-empleados" id="gridUsers">
         <div class="grid-item header">Telefono</div>
         <div class="grid-item header">Nombre</div>
@@ -39,16 +46,20 @@
         <div class="grid-item header">Tipo de Usuario</div>
         <div class="grid-item header">Acciones</div>
       </div>
+      <!-- Javascript encargado de obtener los usuarios de la base de datos. -->
       <script> retirarUsuarios(); </script>
     </div>
   </div>  
 
+  <!-- Modal para la creación de usuarios. -->
   <input class="modal-state" id="modal-create" name="modal-create" type="checkbox" />
   <div class="modal">
     <label class="modal__bg" for="modal-create"></label>
     <div class="modal__inner">
       <label class="modal__close" for="modal-create"></label>
       <div class="ui-form">
+        <!-- Formulario, con acceso al API. Notese que el submit esta desactivado, por que se realiza
+        una verificación antes de subirlo. Se sube programaticamente.-->
         <form id="crear_user" action="../api/apiCreateUser.php" method="post" onsubmit="return false;">
           <div class="form-flex-container">
             <div class="required field">
@@ -76,6 +87,7 @@
               <input class="input-modal" id="crear-password-usuario" type="password" name="contrasena" placeholder="********" required></input>
             </div>           
           </div>
+          <!-- En este boton se realiza la verificación, y consecuentemente la subida del formulario. -->
           <div style="display: flex;">
             <input type="submit" onClick="verificarTelefono()" value="Crear" id="create" class="btn-submit"></input>
           </div>
@@ -84,12 +96,15 @@
     </div>
   </div>
 
+  <!-- Modal para la modificación de usuarios. -->
   <input class="modal-state" id="modal-modify" name="modal-modify" type="checkbox" />
   <div class="modal">
     <label class="modal__bg" for="modal-modify"></label>
     <div class="modal__inner">
       <label class="modal__close" for="modal-modify"></label>
       <div class="ui-form">
+        <!-- Formulario, con acceso al API. Notese que el submit esta desactivado, por que se realiza
+        una verificación antes de subirlo. Se sube programaticamente.-->
         <form id="modificar_user" action="../api/apiModifyUser.php" method="post" onsubmit="return false;">
           <div class="form-flex-container">
             <div class="required field">
@@ -122,6 +137,7 @@
               <input class="input-modal" id="password-usuario-new" type="password" name="contrasena_new" placeholder="********"></input>
             </div>
           </div>
+          <!-- En este boton se realiza la verificación, y consecuentemente la subida del formulario. -->
           <div style="display: flex;">
             <button type="button" class="btn-password" onClick="cambiarContrasena()">Cambiar contraseña</button> 
             <input type="submit" onClick="verificarContrasena()" value="Modificar" id="modify" class="btn-submit"></input>
@@ -131,6 +147,7 @@
     </div>
   </div>
 
+  <!-- Modal para la eliminación de usuarios. -->
   <input class="modal-state" id="modal-delete" name="modal-delete" type="checkbox" />
   <div class="modal">
     <label class="modal__bg" for="modal-delete"></label>
@@ -152,6 +169,7 @@
     </div>
   </div>
 
+<!-- Se asignan todas las funciones de los modals al recibir clicks. -->
 <script> setModalListener(); </script>
 </body>
 </html>

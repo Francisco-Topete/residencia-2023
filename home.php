@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">   
 <head>
-<!-- mapboxs-->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-<!--mapboxs-->
+    <!-- Librerias de Mapbox-->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- Librerias de Mapbox -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,35 +16,53 @@
     <link rel="stylesheet" href="css/estilosHome.css">
     <link rel="stylesheet" href="css/burgerMenu.css">
     <link rel="stylesheet" href="css/modalMapMarker.css">
+
+    <!-- Javascript que se encarga de todas las funciones relacionadas con la carga del mapa (Nodos)-->
     <script src="js/mainMap.js"></script>      
 </head>
 
 
 <body>
-    <!-- clase contenedor para el maps-->
+    <!-- PHP de la barra de navegación + el manager de sesiones-->
     <?php
         include 'navigation.php';
     ?>
 
-    <!-- insercion del maps -->
+    <!-- Contenedor principal del mapa -->
     <div class ="contenedorMapa"> 
+        <!-- HTML donde se va a insertar el mapa -->
         <div id="map">
+            <!-- Contenedor que se utilizara para contener y centrar la barra de carga -->
             <div id="loadingBackground">
+                <!-- Barra de carga del mapa (Circulo) -->
                 <div id="loading"></div>
             </div>
         </div>
         <script>
-            var userType = <?php echo "'" . $_SESSION['user-type'] . "'";?>;
-            const loader = document.querySelector("#loading");
-            const loaderBackground = document.querySelector("#loadingBackground");
-            generateMap();							     
+            var userType = <?php echo "'" . $_SESSION['user-type'] . "'";?>;    //Se manda el tipo de usuario
+                                                                                //Que tiene sesion iniciada
+                                                                                //Al Javascript, para 
+                                                                                //identificar si es adminis-
+                                                                                //trador o coordinador, para
+                                                                                //La edición y eliminación 
+                                                                                //De nodos.
+            
+            const loader = document.querySelector("#loading");  //Se agarra la barra de carga para su activación
+                                                                //Y desactivación en el Javascript.
+
+            const loaderBackground = document.querySelector("#loadingBackground");  //Lo mismo con su
+                                                                                    //contenedor.
+                                                                                    
+            generateMap();  //Esta es la función que se encarga de generar el mapa con todos sus nodos.							     
         </script>
     </div>
 
+    <!-- Este es el contenedor que sirve como boton para mostrar y esconder los filtros. -->
     <div class="switchFiltros" id="switchFiltros">
         +
     </div>
 
+    <!-- Este es el contenedor que contiene el formulario con todos los filtros. -->
     <div class="contenedorFiltros" id="contenedorFiltros">                                   
         <form class="Filtros" id="formFiltros" action="" method="get">
             <div class="texto-Filtros">
@@ -135,6 +153,9 @@
             </div>
         </form>
     </div>    
+
+<!-- Javascript para otras funciones miscelaneas del cuerpo (importar opciones del filtrado de la BD, GET
+ para los filtros, etc.) -->
 <script src="js/mainHome.js"></script>     
 </body>
 </html>

@@ -47,6 +47,6 @@
     }   
     else
     {
-        echo "???";
+        echo "???"; //Catcher, por si hay alguna situación inesperada
     }
 ?>

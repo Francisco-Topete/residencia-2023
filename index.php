@@ -19,6 +19,7 @@
         <div class="contenedor">
             <!-- Foto para decorar el inicio de sesion -->
             <div class="imagen-formulario"></div>
+            <!-- Formulario de inicio de sesión -->
             <form method="post" action="login" class="formulario">
                 <div class="texto-formulario">
                     <h2>Bienvenido</h2>
