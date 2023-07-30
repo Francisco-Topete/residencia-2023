@@ -1,6 +1,11 @@
 <?php 
+//Esta API es para retirar las opciones de los select de la pantalla del menu de la webapp y para el formulario
+//de captura de la aplicación movil.
+
+//Se llama la conexión a la base de datos.
 include '../sqlservercall.php'; 
 
+//Se define el arreglo que almacenara las opciones de los select.
 $arrayData = ['Especies' => array(), 
               'Razas' => array(),
               'Situacion' => array(),
@@ -9,6 +14,9 @@ $arrayData = ['Especies' => array(),
               'Heridas' => array(),
               'Comportamiento' => array()];
 
+//Aqui se inicia el procedimiento de consulta de las opciones del select.
+
+//Esto es para las especies.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarEspecies"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -19,6 +27,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para las razas.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarRazas"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -30,6 +39,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para las situaciones.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarSituacion"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -40,6 +50,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para las edades.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarEdad"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -50,6 +61,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para los problemas de salud.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarProblema_Salud"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -60,6 +72,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para las heridas.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarHeridas"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -70,6 +83,7 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Esto es para los comportamientos.
 $query = sqlsrv_query($conn, "EXEC dbo.ConsultarAgresividad"); 
 while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
 {
@@ -80,6 +94,9 @@ while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC))
     ));
 }
 
+//Finalmente, se codifica como un JSON Array. 
+//Es importante dar a notar que indicamos a el codificador que ignore caracteres que no son UTF-8, para
+//evitar problemas con la consulta.
 $jsonArray = json_encode($arrayData, JSON_INVALID_UTF8_IGNORE);
 echo $jsonArray;
 ?>

@@ -1,10 +1,16 @@
+//Aqui se declaran todas las constantes para referirse a los selects de la pagina principal.
 const selectEspecie = document.getElementById('selectEspecie');
 const selectRaza = document.getElementById('selectRaza');
+
+//Esta constante hace referencia al boton que muestra y esconde los filtros.
 const switchFiltros = document.getElementById('switchFiltros');
+
+//Esta otra hace referencia a su contenedor.
 const contenedorFiltros = document.getElementById('contenedorFiltros');
 var checkGet = "";
 var serverResponse;
 
+//Con una función asincrona, se llama a las opciones del select por medio de la API.
 fetch('api/apiCallSelectOptions.php')
     .then((response) => 
     {
@@ -17,17 +23,21 @@ fetch('api/apiCallSelectOptions.php')
     })
     .then((data) => 
     {
+        //Estas variables son los arreglos que van a recibir el JSON Array. 
+        //Esta el arreglo general (Data), y los de cada filtro.
         let arrayData = [], arrayEspecies = [], arrayRazas = [];
+        
+        //Estas variables representan los indices de los arreglos.
         let arrayKeys = [], arrayInnerKeys = [];
 
+        //Se convierte el JSON Array al arrayData.
         arrayKeys = Object.keys(data);
         arrayKeys.forEach(key => 
         {
             arrayData[key] = (data[key] == null ? "" : data[key]);
         });
 
-        console.log("Mira esto, perro: ");
-
+        //Se obtiene el arreglo de especies.
         arrayKeys = Object.keys(arrayData['Especies']);
         arrayKeys.forEach(key => 
         {
@@ -40,6 +50,7 @@ fetch('api/apiCallSelectOptions.php')
             });              
         });
 
+        //Se anexan los datos obtenidos de especies al select correspondiente.
         let arrayEspeciesLength = arrayEspecies.length;
         for(let x = 0; x < arrayEspeciesLength ;x++){
             let option = document.createElement("option");
@@ -48,6 +59,7 @@ fetch('api/apiCallSelectOptions.php')
             selectEspecie.appendChild(option);
         }
 
+        //Se obtiene el arreglo de razas.
         arrayKeys = Object.keys(arrayData['Razas']);
         arrayKeys.forEach(key => 
         {
@@ -60,6 +72,7 @@ fetch('api/apiCallSelectOptions.php')
             });              
         });
 
+        //Se anexan los datos obtenidos de razas al select correspondiente.
         let arrayRazasLength = arrayRazas.length;
         for(let x = 0; x < arrayRazasLength ;x++){
             let option = document.createElement("option");
@@ -69,6 +82,7 @@ fetch('api/apiCallSelectOptions.php')
         }
     }) 
 
+//Estas funciones es para aplicar el filtro correspondiente por medio de GET.
 document.getElementById("selectEspecie").onchange = function()
 {
     document.getElementById("formFiltros").submit(); 
@@ -79,6 +93,8 @@ document.getElementById("selectRaza").onchange = function()
     document.getElementById("formFiltros").submit(); 
 }
 
+
+//Esta función es la encargada de mostrar y esconder el formulario de los filtros, por medio del boton.
 switchFiltros.onclick = function()
 {
     if(!contenedorFiltros.classList.contains("filtrosVisible"))
